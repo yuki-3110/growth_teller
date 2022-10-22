@@ -1,2 +1,17 @@
 <h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+
+<%# if @user.image? %>
+    <%#= image_tag @user.image, size: '100x100' %>
+  <%# else %>
+      <div class="icon align-center">
+        <%#= image_tag 'icon.png', size: '100x100' %>
+      </div>
+  <%# end %>
+
+  <br>
+  <p>氏名: <%= @user.name %></p>
+  <p>年代: <%= @user.birthday %></p>
+  <p>性別: <%= @user.gender %></p>
+
+
+
