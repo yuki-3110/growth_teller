@@ -3,7 +3,8 @@
 <%# if @user.image? %>
     <%#= image_tag @user.image, size: '100x100' %>
   <%# else %>
-      <div class="icon align-center">
+      <div class="icon">
+      <%= image_tag asset_path("default_image.webp"),  { class: "avatar me-3", alt: "プロフィール画像", width: "200" } %>
         <%#= image_tag 'icon.png', size: '100x100' %>
       </div>
   <%# end %>
