@@ -1,0 +1,20 @@
+<h1>Users#show</h1>
+
+<div class="icon">
+  <% if @user.image? %>
+    <%= image_tag @user.image.url %>
+    <%#= image_tag @user.image, size: '100x100' %>
+  <% else %>
+    <%= image_tag asset_path("default_image.webp"),  { class: "avatar me-3", alt: "プロフィール画像", width: "200" } %>
+    <%#= image_tag (asset_path'no_image.png') %>
+    <%#= image_tag 'icon.png', size: '100x100' %>
+  <% end %>
+</div>
+
+<br>
+<p>氏名: <%= @user.name %> | 年代: <%= @user_age %>代 | 性別: <%= @user.gender %></p>
+<p><%= link_to "編集", edit_user_registration_path, class: "btn btn-outline-primary" if current_user == @user %></p>
+  
+
+
+
