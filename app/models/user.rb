@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   validates :password, presence: true, on: :create
 
-  enum gender: { 男性: 0, 女性: 1}
+  enum gender: { man: 0, woman: 1}
 
   def age
     today = Date.today.strftime("%Y%m%d").to_i
