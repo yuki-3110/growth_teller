@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   enum gender: { man: 0, woman: 1}
 
+  has_many :careers
+
   def age
     today = Date.today.strftime("%Y%m%d").to_i
     user_birthday = self.birthday
