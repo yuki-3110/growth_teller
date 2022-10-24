@@ -29,23 +29,19 @@
   <div class="field">
     <%= form.label :position %>
     <%= form.select :position, Career.positions.keys.map {|k| [t("enums.career.position.#{k}"), k]}, include_blank: '選択してください', class: 'form-control'  %>
-    <%#= form.label :position %>
-    <%#= form.number_field :position %>
   </div>
 
   <div class="field">
     <%= form.label :start_day %>
-    <%#= form.date_select :start_day %>
     <%= raw sprintf(
-      form.date_select(:date_from, use_month_numbers: true, date_separator: '%s', discard_day: true),
+      form.date_select(:start_day, use_month_numbers: true, start_year: (Time.now.year - 69), end_year: (Time.now.year), date_separator: '%s', discard_day: true),
     '年 ') + '月' %>
   </div>
 
   <div class="field">
     <%= form.label :end_day %>
-    <%#= form.date_select :end_day %>
     <%= raw sprintf(
-      form.date_select(:date_from, use_month_numbers: true, date_separator: '%s', discard_day: true),
+      form.date_select(:end_day, use_month_numbers: true, start_year: (Time.now.year - 69), end_year: (Time.now.year), date_separator: '%s', discard_day: true),
     '年 ') + '月' %>
   </div>
 

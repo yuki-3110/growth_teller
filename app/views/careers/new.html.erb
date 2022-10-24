@@ -5,4 +5,7 @@
 
 <%= render 'form', career: @career %>
 
-<%= link_to 'Back', careers_path %>
+<%#= ユーザーのキャリアがなかったら、 %>
+
+<%#= ユーザーのキャリアがあったら、 %>
+<%= link_to 'Back', user_path(current_user) %>

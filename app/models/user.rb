@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   enum gender: { man: 0, woman: 1}
 
-  has_many :careers
+  has_many :careers, dependent: :destroy
 
   def age
     today = Date.today.strftime("%Y%m%d").to_i

@@ -18,3 +18,9 @@ ja:
       #   moving_day: 引越日
       # memo:
       #   memo: メモ
+    # enums:
+    #   career:
+    #     industry:
+    #       インターネット・It・通信関連: インターネット・IT・通信関連
+    #       medium: 中
+    #       low: 低

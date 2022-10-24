@@ -1,4 +1,5 @@
 class CareersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_career, only: %i[ show edit update destroy ]
 
   # GET /careers or /careers.json
@@ -21,11 +22,12 @@ class CareersController < ApplicationController
 
   # POST /careers or /careers.json
   def create
-    @career = Career.new(career_params)
+    # @career = Career.new(career_params)
+    @career = current_user.careers.build(career_params)
 
     respond_to do |format|
       if @career.save
-        format.html { redirect_to career_url(@career), notice: "Career was successfully created." }
+        format.html { redirect_to user_path(current_user), notice: "Career was successfully created." }
         format.json { render :show, status: :created, location: @career }
       else
         format.html { render :new, status: :unprocessable_entity }
