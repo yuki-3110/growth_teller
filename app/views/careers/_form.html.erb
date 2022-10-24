@@ -13,42 +13,45 @@
 
   <div class="field">
     <%= form.label :industry %>
-    <%= form.number_field :industry %>
+    <%= form.select :industry, Career.industries.keys.map {|k| [t("enums.career.industry.#{k}"), k]}, include_blank: '選択してください', class: 'form-control'  %>
   </div>
 
   <div class="field">
     <%= form.label :occupation %>
-    <%= form.number_field :occupation %>
+    <%= form.select :occupation, Career.occupations.keys.map {|k| [t("enums.career.occupation.#{k}"), k]}, include_blank: '選択してください', class: 'form-control'  %>
   </div>
 
   <div class="field">
     <%= form.label :company_scale %>
-    <%= form.number_field :company_scale %>
+    <%= form.select :company_scale, Career.company_scales.keys.map {|k| [t("enums.career.company_scale.#{k}"), k]}, include_blank: '選択してください', class: 'form-control'  %>
   </div>
 
   <div class="field">
     <%= form.label :position %>
-    <%= form.number_field :position %>
+    <%= form.select :position, Career.positions.keys.map {|k| [t("enums.career.position.#{k}"), k]}, include_blank: '選択してください', class: 'form-control'  %>
+    <%#= form.label :position %>
+    <%#= form.number_field :position %>
   </div>
 
   <div class="field">
     <%= form.label :start_day %>
-    <%= form.date_select :start_day %>
+    <%#= form.date_select :start_day %>
+    <%= raw sprintf(
+      form.date_select(:date_from, use_month_numbers: true, date_separator: '%s', discard_day: true),
+    '年 ') + '月' %>
   </div>
 
   <div class="field">
     <%= form.label :end_day %>
-    <%= form.date_select :end_day %>
+    <%#= form.date_select :end_day %>
+    <%= raw sprintf(
+      form.date_select(:date_from, use_month_numbers: true, date_separator: '%s', discard_day: true),
+    '年 ') + '月' %>
   </div>
 
   <div class="field">
     <%= form.label :content %>
     <%= form.text_area :content %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
   </div>
 
   <div class="actions">

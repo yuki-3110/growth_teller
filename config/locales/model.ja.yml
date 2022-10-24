@@ -1,0 +1,20 @@
+ja:
+  activerecord:
+    models:
+      career: 経歴
+      experience: 経験談
+      # memo: メモ
+      # question: 質問
+    attributes:
+      career:
+        industry: 業種
+        occupation: 職種
+        company_scale: 企業規模
+        position: 役職
+        start_day: いつから
+        end_day: いつまで
+        content: 業務内容や実績
+      # moving:
+      #   moving_day: 引越日
+      # memo:
+      #   memo: メモ
