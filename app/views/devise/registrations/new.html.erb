@@ -4,13 +4,14 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <h4><span class="label label-danger">aaa</span><%= f.label :name %></h4><br />
     <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
   </div>
 
   <div class="field">
     <%= f.label :birthday %><br />
-    <%= f.date_select :birthday, use_month_numbers: true, start_year: (Time.now.year - 69), end_year: (Time.now.year - 18), default: Date.new(1989, 1, 1) %>
+    <%= f.date_select :birthday, use_month_numbers: true, start_year: (Time.now.year - 69), end_year: (Time.now.year - 18), default: Date.new(1989, 1, 1) %><br />
+    <small>年齢は他のユーザーには公開されません。マイページに年代のみ表示されます。</small>
   </div>
 
   <div class="field">

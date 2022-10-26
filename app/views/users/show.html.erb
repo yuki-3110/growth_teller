@@ -1,4 +1,4 @@
-<h1>Users#show</h1>
+<h4><%= @user.name %>のページ</h4>
 
 <div class="icon">
   <% if @user.image? %>
@@ -14,7 +14,50 @@
 <br>
 <p>氏名: <%= @user.name %> | 年代: <%= @user_age %>代 | 性別: <%= @user.gender %></p>
 <p><%= link_to "編集", edit_user_registration_path, class: "btn btn-outline-primary" if current_user == @user %></p>
-  
+
+<br>
+<%= link_to 'New Career', new_career_path %>
+
+<br>
+<br>
+<% if @careers.present? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Industry</th>
+        <th>Occupation</th>
+        <th>Company scale</th>
+        <th>Position</th>
+        <th>Start day</th>
+        <th>End day</th>
+        <th>Content</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @careers.each do |career| %>
+        <tr>
+          <td><%= career.industry %></td>
+          <td><%= career.occupation %></td>
+          <td><%= career.company_scale %></td>
+          <td><%= career.position %></td>
+          <td><%= career.start_day.strftime('%Y/%m') %></td>
+          <td><%= career.end_day.strftime('%Y/%m') %></td>
+          <td><%= career.content %></td>
+          <td><%#= link_to 'Show', career %></td>
+          <% if career.user == current_user %>
+          <td><%= link_to 'Edit', edit_career_path(career) %></td>
+          <td><%= link_to 'Destroy', career, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% else %>
+  <p>直近の経歴を登録しましょう！</p>
+<% end %>
 
 
 

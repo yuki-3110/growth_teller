@@ -1,0 +1,56 @@
+<%= form_with(model: career, local: true) do |form| %>
+  <% if career.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(career.errors.count, "error") %> prohibited this career from being saved:</h2>
+
+      <ul>
+        <% career.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :industry %>
+    <%= form.select :industry, Career.industries.keys.map {|k| [t("enums.career.industry.#{k}"), k]}, include_blank: '選択してください', class: 'form-control'  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :occupation %>
+    <%= form.select :occupation, Career.occupations.keys.map {|k| [t("enums.career.occupation.#{k}"), k]}, include_blank: '選択してください', class: 'form-control'  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :company_scale %>
+    <%= form.select :company_scale, Career.company_scales.keys.map {|k| [t("enums.career.company_scale.#{k}"), k]}, include_blank: '選択してください', class: 'form-control'  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :position %>
+    <%= form.select :position, Career.positions.keys.map {|k| [t("enums.career.position.#{k}"), k]}, include_blank: '選択してください', class: 'form-control'  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_day %>
+    <%= raw sprintf(
+      form.date_select(:start_day, use_month_numbers: true, start_year: (Time.now.year - 69), end_year: (Time.now.year), date_separator: '%s', discard_day: true),
+    '年 ') + '月' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_day %>
+    <%= raw sprintf(
+      form.date_select(:end_day, use_month_numbers: true, start_year: (Time.now.year - 69), end_year: (Time.now.year), date_separator: '%s', discard_day: true),
+    '年 ') + '月' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

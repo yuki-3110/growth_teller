@@ -3,9 +3,14 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
+  validates :name, presence: true
+  validates :birthday, presence: true
+  validates :gender, presence: true
   validates :password, presence: true, on: :create
 
   enum gender: { man: 0, woman: 1}
+
+  has_many :careers, dependent: :destroy
 
   def age
     today = Date.today.strftime("%Y%m%d").to_i

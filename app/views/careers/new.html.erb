@@ -1,0 +1,12 @@
+<% if current_user.careers.present? %>
+  <h3>経歴作成ページ</h3>
+<% else %>
+  <h3>続いて、あなたの直近の経歴を登録してください。</h3>
+<% end %>
+
+<%= render 'form', career: @career %>
+
+<%#= ユーザーのキャリアがなかったら、 %>
+
+<%#= ユーザーのキャリアがあったら、 %>
+<%= link_to 'Back', user_path(current_user) %>

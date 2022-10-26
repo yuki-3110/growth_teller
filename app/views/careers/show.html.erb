@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Industry:</strong>
+  <%= @career.industry %>
+</p>
+
+<p>
+  <strong>Occupation:</strong>
+  <%= @career.occupation %>
+</p>
+
+<p>
+  <strong>Company scale:</strong>
+  <%= @career.company_scale %>
+</p>
+
+<p>
+  <strong>Position:</strong>
+  <%= @career.position %>
+</p>
+
+<p>
+  <strong>Start day:</strong>
+  <%= @career.start_day %>
+</p>
+
+<p>
+  <strong>End day:</strong>
+  <%= @career.end_day %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @career.content %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @career.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_career_path(@career) %> |
+<%= link_to 'Back', careers_path %>
