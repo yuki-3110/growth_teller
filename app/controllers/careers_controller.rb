@@ -1,6 +1,7 @@
 class CareersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_career, only: %i[ show edit update destroy ]
+  before_action :check_user, only: %i[show edit update destroy]
 
   # GET /careers or /careers.json
   def index
@@ -63,6 +64,12 @@ class CareersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_career
       @career = Career.find(params[:id])
+    end
+
+    def check_user
+      @career = Career.find(params[:id])
+      @user = @career.user
+      redirect_to user_path(current_user), notice: "他のユーザーの経歴を編集することはできません" unless @user == current_user
     end
 
     # Only allow a list of trusted parameters through.
