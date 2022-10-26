@@ -1,5 +1,12 @@
 class Career < ApplicationRecord
   belongs_to :user
+  validates :industry, presence: true
+  validates :occupation, presence: true
+  validates :company_scale, presence: true
+  validates :position, presence: true
+  validates :start_day, presence: true
+  validates :end_day, presence: true
+
   enum industry: { 
     'インターネット・IT・通信関連': 0, '金融関連': 1, '流通・小売関連': 2, 
     '食品関連': 3, '電気・精密機器関連': 4, '自動車・機械関連': 5,
