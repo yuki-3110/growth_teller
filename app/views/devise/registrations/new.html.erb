@@ -1,17 +1,19 @@
 <div class="container mt-5 ">
   <div class="text-center">
-
     <h4><%= t('.sign_up') %></h4>
+  </div>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="card card-container ">
+  <img class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-      <div class="field mt-5">
+      <div class="field mt-3">
         <h5><span class="badge badge-pill badge-danger">必須</span><%= f.label :name %></h5>
         <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: '山田 太郎' %>
       </div>
 
-      <div class="field mt-5">
+      <div class="field mt-3">
         <h5><span class="badge badge-pill badge-danger">必須</span><%= f.label :birthday %></h5>
         <%= raw sprintf(
           f.date_select( :birthday, use_month_numbers: true, start_year: (Time.now.year - 69), end_year: (Time.now.year - 18), default: Date.new(1989, 1, 1), date_separator: '%s' ),
@@ -19,37 +21,35 @@
         <small>年齢は他のユーザーには公開されません。マイページに年代のみ表示されます。</small>
       </div>
 
-
-      <div class="field mt-5">
+      <div class="badge field mt-3">
         <h5><span class="badge badge-pill badge-danger">必須</span><%= f.label :gender %></h5>
-        <div class="h-25">
-        <%= f.label :男性  %>
-        <%= f.radio_button :gender, :man %>
-        <%= f.label :女性  %>
-        <%= f.radio_button :gender, :woman %>
-        </div>
       </div>
+      <br>
+      <%= f.label :男性  %>
+      <%= f.radio_button :gender, :man %>
+      <%= f.label :女性  %>
+      <%= f.radio_button :gender, :woman %>
 
-      <div class="field mt-5">
+      <div class="field mt-3">
         <h5><span class="badge badge-pill badge-danger">必須</span><%= f.label :email %></h5>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'example@email.com' %>
       </div>
 
-      <div class="field mt-5">
-        <h5><span class="badge badge-pill badge-danger">必須</span><%= f.label :password %></h5>
+      <div class="field mt-3">
+        <h5><span class="badge badge-pill badge-danger">必須</span><%= f.label :password %>
         <% if @minimum_password_length %>
         <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
-        <% end %><br />
+        <% end %></h5>
         <%= f.password_field :password, autocomplete: "new-password" %>
       </div>
 
-      <div class="field mt-5">
+      <div class="field mt-3">
         <h5><span class="badge badge-pill badge-danger">必須</span><%= f.label :password_confirmation %></h5>
         <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
       </div>
 
-      <div class="actions mt-5">
-        <%= f.submit t('.sign_up') %>
+      <div class="actions mt-3 ">
+        <%= f.submit t('.sign_up'), class: "btn btn-lg btn-primary btn-block btn-signin" %>
       </div>
     <% end %>
   </div>

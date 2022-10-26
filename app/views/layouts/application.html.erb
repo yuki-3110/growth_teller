@@ -7,29 +7,49 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <style>
+      body { padding-bottom: 100px; }
+    </style>
+
   </head>
 
   <body>
-    <% if user_signed_in? && current_user.try(:admin?) %>
-      <%= link_to "管理者ページ", rails_admin_path %>
-      <%= link_to "マイページ", user_path(current_user) %>
-      <%#= link_to "経験談一覧", experiences_path %>
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-    <% elsif user_signed_in? %>
-      <%= link_to "マイページ", user_path(current_user) %>
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "新規登録", new_user_registration_path %>
-      <%= link_to "ログイン", new_user_session_path %>
-    <% end %>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <%= link_to "growth teller", root_path , class: "navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <% if user_signed_in? && current_user.try(:admin?) %>
+            <a class="nav-item nav-link"><%= link_to "管理者ページ", rails_admin_path %></a>
+            <a class="nav-item nav-link"><%= link_to "マイページ", user_path(current_user) %></a>
+            <%#= link_to "経験談一覧", experiences_path %>
+            <a class="nav-item nav-link"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></a>
+          <% elsif user_signed_in? %>
+            <a class="nav-item nav-link"><%= link_to "マイページ", user_path(current_user) %></a>
+            <a class="nav-item nav-link"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></a>
+          <% else %>
+            <a class="nav-item nav-link"><%= link_to "新規登録", new_user_registration_path %></a>
+            <a class="nav-item nav-link"><%= link_to "ログイン", new_user_session_path %></a>
+          <% end %>
+        </div>
+      </div>
+    </nav>
 
-    <% if notice %>
-      <p class="alert alert-notice"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert alert-error"><%= alert %></p>
-    <% end %>
+      <% if notice %>
+        <p class="alert alert-notice"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-error"><%= alert %></p>
+      <% end %>
 
-    <%= yield %>
+      <%= yield %>
+
+    <footer class="fixed-bottom text-center text-black bg-light" style="height: 100px;">
+      <div class="container p-5 h5">© 2022 growth-teller All Rights Reserved.</div>
+    </footer>
+
   </body>
 </html>
