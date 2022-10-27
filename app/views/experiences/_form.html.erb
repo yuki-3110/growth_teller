@@ -1,0 +1,67 @@
+<%= form_with(model: experience, local: true) do |form| %>
+  <% if experience.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(experience.errors.count, "error") %> prohibited this experience from being saved:</h2>
+
+      <ul>
+        <% experience.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :industry %>
+    <%= form.number_field :industry %>
+  </div>
+
+  <div class="field">
+    <%= form.label :occupation %>
+    <%= form.number_field :occupation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :study_method %>
+    <%= form.number_field :study_method %>
+  </div>
+
+  <div class="field">
+    <%= form.label :learn_age %>
+    <%= form.date_select :learn_age %>
+  </div>
+
+  <div class="field">
+    <%= form.label :learn_hour %>
+    <%= form.number_field :learn_hour %>
+  </div>
+
+  <div class="field">
+    <%= form.label :trigger %>
+    <%= form.text_area :trigger %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ingenuity %>
+    <%= form.text_area :ingenuity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :result %>
+    <%= form.text_area :result %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
