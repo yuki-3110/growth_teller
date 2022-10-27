@@ -14,6 +14,7 @@ ja:
         start_day: いつから
         end_day: いつまで
         content: 業務内容や実績
+        
       # moving:
       #   moving_day: 引越日
       # memo:

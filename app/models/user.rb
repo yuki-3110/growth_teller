@@ -8,7 +8,7 @@ class User < ApplicationRecord
   validates :gender, presence: true
   validates :password, presence: true, on: :create
 
-  enum gender: { man: 0, woman: 1}
+  enum gender: { 男: 0, 女: 1}
 
   has_many :careers, dependent: :destroy
 

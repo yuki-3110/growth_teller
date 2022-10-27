@@ -1,44 +1,36 @@
-<p id="notice"><%= notice %></p>
+<div class="container text-center" style=" margin-top: 100px;" >
 
-<p>
-  <strong>Industry:</strong>
-  <%= @career.industry %>
-</p>
+  <div class="field mt-3"">
+    <strong>在籍期間:</strong>
+    <%= @career.start_day %> ~
+    <%= @career.end_day %>
+  </div>
 
-<p>
-  <strong>Occupation:</strong>
-  <%= @career.occupation %>
-</p>
+  <br>
+  <div class="field mt-3"">
+    <strong>Industry: </strong><%= @career.industry %>
+  </div>
+  
+  <br>
+  <div class="field mt-3"">
+    <strong>Occupation: </strong><%= @career.occupation %> 
+  </div>
 
-<p>
-  <strong>Company scale:</strong>
-  <%= @career.company_scale %>
-</p>
+  <br>
+  <div class="field mt-3"">
+    <strong>Company scale:</strong><%= @career.company_scale %>
+  </div>
 
-<p>
-  <strong>Position:</strong>
-  <%= @career.position %>
-</p>
+  <br>
+  <div class="field mt-3"">
+    <strong>Position:</strong><%= @career.position %>
+  </div>
 
-<p>
-  <strong>Start day:</strong>
-  <%= @career.start_day %>
-</p>
+  <br>
+  <div class="field my-3"">
+    <strong>Content</strong><br>
+    <%= @career.content %>
+  </div>
 
-<p>
-  <strong>End day:</strong>
-  <%= @career.end_day %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @career.content %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @career.user_id %>
-</p>
-
-<%= link_to 'Edit', edit_career_path(@career) %> |
-<%= link_to 'Back', careers_path %>
+  <%= link_to 'Back', user_path(current_user), class: "text-dark " %>
+</div>
