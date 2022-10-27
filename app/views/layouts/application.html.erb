@@ -24,10 +24,13 @@
         <div class="navbar-nav">
           <% if user_signed_in? && current_user.try(:admin?) %>
             <a class="nav-item nav-link"><%= link_to "管理者ページ", rails_admin_path, class: "text-dark" %></a>
+            <a class="nav-item nav-link"><%= link_to "経験談一覧", experiences_path, class: "text-dark" %></a>
+            <a class="nav-item nav-link"><%= link_to "経験談作成", new_experience_path, class: "text-dark" %></a>
             <a class="nav-item nav-link"><%= link_to "マイページ", user_path(current_user), class: "text-dark" %></a>
-            <%#= link_to "経験談一覧", experiences_path %>
             <a class="nav-item nav-link"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-dark" %></a>
           <% elsif user_signed_in? %>
+            <a class="nav-item nav-link"><%= link_to "経験談一覧", experiences_path, class: "text-dark" %></a>
+            <a class="nav-item nav-link"><%= link_to "経験談作成", new_experience_path, class: "text-dark" %></a>
             <a class="nav-item nav-link"><%= link_to "マイページ", user_path(current_user), class: "text-dark" %></a>
             <a class="nav-item nav-link"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-dark" %></a>
           <% else %>
