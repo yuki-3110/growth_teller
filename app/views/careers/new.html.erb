@@ -5,12 +5,11 @@
     <% else %>
       <h3>続いて、あなたの直近の経歴を登録してください。</h3>
     <% end %>
+  </div>
 
     <%= render 'form', career: @career %>
 
-    <%#= ユーザーのキャリアがなかったら、 %>
-
-    <%#= ユーザーのキャリアがあったら、 %>
-    <%= link_to 'Back', user_path(current_user), class: "h5 text-dark" %>
+  <div class="text-center">
+    <%= link_to 'Back', user_path(current_user), class: "text-dark btn btn-outline-secondary" %>
   </div>
 </div>

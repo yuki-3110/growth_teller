@@ -1,67 +1,68 @@
-<%= form_with(model: experience, local: true) do |form| %>
-  <% if experience.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(experience.errors.count, "error") %> prohibited this experience from being saved:</h2>
+<div class="container" style=" margin-top: 50px;" >
+  <%= form_with(model: experience, local: true) do |form| %>
+    <% if experience.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(experience.errors.count, "error") %> prohibited this experience from being saved:</h2>
 
-      <ul>
-        <% experience.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% experience.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="h5">
+      <div class="field">
+        <%= form.label :title %>
+        <%= form.text_field :title, placeholder: '例）簿記3級取得', class: 'form-control' %>
+      </div>
+
+      <div class="field mt-4">
+        <%= form.label :industry %>
+        <%= form.select :industry, Experience.industries.keys.map {|k| [t("enums.experience.industry.#{k}"), k]}, include_blank: '選択してください', class: 'form-control'  %>
+      </div>
+
+      <div class="field mt-4">
+        <%= form.label :occupation %>
+        <%= form.select :occupation, Experience.occupations.keys.map {|k| [t("enums.experience.occupation.#{k}"), k]}, include_blank: '選択してください', class: 'form-control'  %>
+      </div>
+
+      <div class="field mt-4">
+        <%= form.label :study_method %>
+        <%= form.select :study_method, Experience.study_methods.keys.map {|k| [t("enums.experience.occupation.#{k}"), k]}, include_blank: '選択してください', class: 'form-control'  %>
+      </div>
+
+      <div class="field mt-4">
+        <%= form.label :learn_age %>
+        <%= raw sprintf(
+          form.date_select(:learn_age, use_month_numbers: true, start_year: (Time.now.year - 69), end_year: (Time.now.year), date_separator: '%s', discard_day: true),
+        '年 ') + '月' %>
+      </div>
+
+      <div class="field mt-4">
+        <%= form.label :learn_hour %>
+        <%= form.number_field :learn_hour, placeholder: '半角数字を入力' %>（時間）
+      </div>
+
+      <div class="field mt-4">
+        <%= form.label :trigger %>
+        <%= form.text_area :trigger, placeholder: '例）実務で必要になったため', class: 'form-control' %>
+      </div>
+
+      <div class="field mt-4">
+        <%= form.label :ingenuity %>
+        <%= form.text_area :ingenuity, placeholder: '例）〇〇の参考書を購入し、繰り返し解いた。', class: 'form-control' %>
+      </div>
+
+      <div class="field mt-4">
+        <%= form.label :result %>
+        <%= form.text_area :result, placeholder: '例）検定に合格することができた', class: 'form-control'  %>
+      </div>
+
+      <div class="actions mt-4">
+        <%= form.submit class: "btn btn-lg btn-secondary btn-block btn-signin" %>
+      </div>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :industry %>
-    <%= form.number_field :industry %>
-  </div>
-
-  <div class="field">
-    <%= form.label :occupation %>
-    <%= form.number_field :occupation %>
-  </div>
-
-  <div class="field">
-    <%= form.label :study_method %>
-    <%= form.number_field :study_method %>
-  </div>
-
-  <div class="field">
-    <%= form.label :learn_age %>
-    <%= form.date_select :learn_age %>
-  </div>
-
-  <div class="field">
-    <%= form.label :learn_hour %>
-    <%= form.number_field :learn_hour %>
-  </div>
-
-  <div class="field">
-    <%= form.label :trigger %>
-    <%= form.text_area :trigger %>
-  </div>
-
-  <div class="field">
-    <%= form.label :ingenuity %>
-    <%= form.text_area :ingenuity %>
-  </div>
-
-  <div class="field">
-    <%= form.label :result %>
-    <%= form.text_area :result %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

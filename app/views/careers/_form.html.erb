@@ -1,6 +1,5 @@
 <div class="container" style=" margin-top: 50px;" >
 
-
   <%= form_with(model: career, local: true) do |form| %>
     <% if career.errors.any? %>
       <div id="error_explanation">
@@ -30,7 +29,7 @@
         <%= form.select :company_scale, Career.company_scales.keys.map {|k| [t("enums.career.company_scale.#{k}"), k]}, include_blank: '選択してください', class: 'form-control'  %>
       </div>
 
-      <div class="field mt-3">
+      <div class="field mt-4">
         <%= form.label :position %>
         <%= form.select :position, Career.positions.keys.map {|k| [t("enums.career.position.#{k}"), k]}, include_blank: '選択してください', class: 'form-control'  %>
       </div>
