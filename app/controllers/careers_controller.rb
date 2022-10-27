@@ -1,7 +1,7 @@
 class CareersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_career, only: %i[ show edit update destroy ]
-  before_action :check_user, only: %i[show edit update destroy]
+  before_action :check_user, only: %i[ edit update destroy]
 
   # GET /careers or /careers.json
   def index
@@ -55,7 +55,7 @@ class CareersController < ApplicationController
     @career.destroy
 
     respond_to do |format|
-      format.html { redirect_to careers_url, notice: "Career was successfully destroyed." }
+      format.html { redirect_to user_path(current_user), notice: "Career was successfully destroyed." }
       format.json { head :no_content }
     end
   end
