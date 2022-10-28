@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  resources :experiences
+  resources :experiences 
+    # collection do
+    #   post :index_user
+    # end
+    # member do
+    #   get :index_user 
+    # end
+  # get '/experiences/:id/index_user' => 'experiences#index_user'
+
   resources :careers
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # devise_for :users

@@ -1,45 +1,24 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
-<h1>Experiences</h1>
+  <% @experiences.each do |experience| %>
+    <div class="h5 card mt-5">
+      <div class="card-body" >
+        <p class="mt-2">投稿者：<%= link_to experience.user.name, user_path(experience.user_id) %></p>
+        <p class="mt-2">title:<%= experience.title %></p>
+        <p>
+          学習時間:<%= experience.learn_hour %>時間
+          目的：
+        </p>
+      </div>
+      <div class="card-footer text-right" >
+        <%= link_to '詳細', experience, class: "btn btn-outline-secondary"  %>
+        <% if experience.user == current_user %>
+          <%= link_to '編集', edit_experience_path(experience), class: "btn btn-outline-secondary"  %>
+          <%= link_to '削除', experience, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-secondary"  %>
+        <% end %>
+        <%= experience.updated_at.strftime("%Y/%m/%d %H:%M") %>
+      </div>
+    </div>
+  <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Industry</th>
-      <th>Occupation</th>
-      <th>Study method</th>
-      <th>Learn age</th>
-      <th>Learn hour</th>
-      <th>Trigger</th>
-      <th>Ingenuity</th>
-      <th>Result</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @experiences.each do |experience| %>
-      <tr>
-        <td><%= experience.title %></td>
-        <td><%= experience.industry %></td>
-        <td><%= experience.occupation %></td>
-        <td><%= experience.study_method %></td>
-        <td><%= experience.learn_age %></td>
-        <td><%= experience.learn_hour %></td>
-        <td><%= experience.trigger %></td>
-        <td><%= experience.ingenuity %></td>
-        <td><%= experience.result %></td>
-        <td><%= experience.user_id %></td>
-        <td><%= link_to 'Show', experience %></td>
-        <td><%= link_to 'Edit', edit_experience_path(experience) %></td>
-        <td><%= link_to 'Destroy', experience, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Experience', new_experience_path %>
+</div>

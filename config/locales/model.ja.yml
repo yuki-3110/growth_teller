@@ -15,9 +15,16 @@ ja:
         end_day: いつまで
         content: 業務内容や実績
         
-      # moving:
-      #   moving_day: 引越日
-      # memo:
+      experience:
+        title: 学習内容
+        industry: 学習時の業種
+        occupation: 学習時の職種
+        study_method: 学習方法
+        learn_age: 学習時期
+        learn_hour: 総学習時間
+        trigger: 学習のきっかけや理由
+        ingenuity: 学習時の工夫
+        result: 学習の結果や感想
       #   memo: メモ
     # enums:
     #   career:

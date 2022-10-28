@@ -1,54 +1,45 @@
-<p id="notice"><%= notice %></p>
+<div class="h4 container" style=" margin-top: 100px;" >
 
-<p>
-  <strong>Title:</strong>
-  <%= @experience.title %>
-</p>
+  <p>
+    <a>Title:</a>
+    <%= @experience.title %>
+  </p>
 
-<p>
-  <strong>Industry:</strong>
-  <%= @experience.industry %>
-</p>
+  <div class="mt-4">
+    <a>【Industry】</a>
+    <%= @experience.industry %> /
+  
+    <a>【Occupation】</a>
+    <%= @experience.occupation %>
+  </div>
 
-<p>
-  <strong>Occupation:</strong>
-  <%= @experience.occupation %>
-</p>
+  <div class="mt-4">
+    <a>【Study method】</a>
+    <%= @experience.study_method %>
+  
+    <a>【Learn age】</a>
+    <%= @experience.learn_age %>
+  
+    <a>【Learn hour】</a>
+    <%= @experience.learn_hour %>時間
+  </div>
 
-<p>
-  <strong>Study method:</strong>
-  <%= @experience.study_method %>
-</p>
+  <div class="mt-4">
+    <a>【Trigger】</a>
+    <%= @experience.trigger %>
+  </div>
 
-<p>
-  <strong>Learn age:</strong>
-  <%= @experience.learn_age %>
-</p>
+  <div class="mt-4">
+    <a>【Ingenuity】</a>
+    <%= @experience.ingenuity %>
+  </div>
 
-<p>
-  <strong>Learn hour:</strong>
-  <%= @experience.learn_hour %>
-</p>
+  <div class="mt-4">
+    <a>【Result】</a>
+    <%= @experience.result %>
+  </div>
 
-<p>
-  <strong>Trigger:</strong>
-  <%= @experience.trigger %>
-</p>
-
-<p>
-  <strong>Ingenuity:</strong>
-  <%= @experience.ingenuity %>
-</p>
-
-<p>
-  <strong>Result:</strong>
-  <%= @experience.result %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @experience.user_id %>
-</p>
-
-<%= link_to 'Edit', edit_experience_path(@experience) %> |
-<%= link_to 'Back', experiences_path %>
+  <%= link_to '戻る', 'javascript:history.back()', class: "mt-3 btn btn-outline-secondary" %>
+  <%#= link_to '経験談一覧', experiences_path, class: "mt-4 btn btn-outline-secondary" %>
+  <%#= link_to '', user_path(current_user), class: "mt-4 btn btn-outline-secondary" %>
+</div>

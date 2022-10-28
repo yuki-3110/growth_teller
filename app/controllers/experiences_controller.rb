@@ -1,5 +1,7 @@
 class ExperiencesController < ApplicationController
-  before_action :set_experience, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
+  before_action :set_experience, only: %i[ show edit update destroy index_user ]
+  before_action :check_user, only: %i[ edit update destroy]
 
   # GET /experiences or /experiences.json
   def index
@@ -21,11 +23,11 @@ class ExperiencesController < ApplicationController
 
   # POST /experiences or /experiences.json
   def create
-    @experience = Experience.new(experience_params)
+    @experience = current_user.experiences.build(experience_params)
 
     respond_to do |format|
       if @experience.save
-        format.html { redirect_to experience_url(@experience), notice: "Experience was successfully created." }
+        format.html { redirect_to experiences_path, notice: "Experience was successfully created." }
         format.json { render :show, status: :created, location: @experience }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +40,7 @@ class ExperiencesController < ApplicationController
   def update
     respond_to do |format|
       if @experience.update(experience_params)
-        format.html { redirect_to experience_url(@experience), notice: "Experience was successfully updated." }
+        format.html { redirect_to experiences_path, notice: "Experience was successfully updated." }
         format.json { render :show, status: :ok, location: @experience }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -57,10 +59,28 @@ class ExperiencesController < ApplicationController
     end
   end
 
+  # def index_user
+  #   @user = User.find(params[:id])
+  #   @experiences = @user.experiences.order(created_at: "DESC")
+  #   # @careers = @user.careers.order(start_day: "DESC")
+  #   # @experiences = @user.experiences.order(created_at: "DESC")
+  #   # @experiences = @user.experiences.order(created_at: "DESC")
+  #   # @tasks =Task.where(moving: Moving.where(user: current_user)
+  #   # @task = Moving.find_by(user: current_user, moving_day: params[:task][:moving_day]).tasks.build(task_params)
+  #   # @user_careers = User.careers.order(start_day: "DESC")
+  #   # @user_careers = User.where(career: Career).order(start_day: "DESC")
+  # end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_experience
       @experience = Experience.find(params[:id])
+    end
+
+    def check_user
+      @experience = Experience.find(params[:id])
+      @user = @experience.user
+      redirect_to experiences_path, notice: "他のユーザーの経歴を編集することはできません" unless @user == current_user
     end
 
     # Only allow a list of trusted parameters through.

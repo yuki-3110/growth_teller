@@ -1,7 +1,11 @@
-<div class="container text-center my-5">
-  <h4><%= @user.name %>のページ</h4>
+<div class="container text-center" style=" margin-top: 100px;">
+  <% if user_signed_in? && @user == current_user %>
+    <h4>マイページ</h4>
+  <% else %>
+    <h4><%= @user.name %>のページ</h4>
+  <% end %>
 
-  <div class="icon">
+  <div class=" con">
     <% if @user.image? %>
       <%= image_tag @user.image.url %>
       <%#= image_tag @user.image, size: '100x100' %>
@@ -18,35 +22,124 @@
     <%= link_to "編集", edit_user_registration_path, class: "my-2 btn btn-outline-secondary" if current_user == @user %>
   </p>
   
-  <br>
-  <% if @user == current_user %>
-    <%= link_to '経歴を登録する', new_career_path, class: "text-dark btn btn-outline-secondary" %>
-  <% end %>
+  <div class="mb-4" >
+    <%= link_to '経歴を登録する', new_career_path, class: "mt-3 text-dark btn btn-outline-secondary" if @user == current_user %>
+  </div>
 
-  <br>
-  <br>
-  
-  <% if @careers.present? %>
-    <p class="h3 mt-2">経歴一覧</p>
-    <% @careers.each do |career| %>
-      <div class="h4 card mt-3">
-        <p class="mt-2">在籍期間:<%= career.start_day.strftime('%Y年 %m月') %> 〜 <%= career.end_day.strftime('%Y年 %m月') %></p>
-        <p>業種:<%= career.industry %> / 職種:<%= career.occupation %></p>
-        <p>企業規模:<%= career.company_scale %> / 役職:<%= career.position %></p>
-        <br>
-        <p>業務内容や実績</p>
-        <%= career.content %>
-      </div>
 
-      <div class="card-footer text-right" >
-        <%#= link_to 'Show', career, class: "btn btn-outline-secondary"  %>
-        <% if career.user == current_user %>
-          <%= link_to '編集', edit_career_path(career), class: "btn btn-outline-secondary"  %>
-          <%= link_to '削除', career, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-secondary"  %>
-        <% end %>  
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link text-dark btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          経歴一覧
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+        <% if @careers.present? %>
+          <% @careers.each do |career| %>
+            <div class="h5 card mt-3">
+              <p class="mt-2">在籍期間:<%= career.start_day.strftime('%Y年 %m月') %> 〜 <%= career.end_day.strftime('%Y年 %m月') %></p>
+              <p>業種:<%= career.industry %></p> 
+              <p>職種:<%= career.occupation %></p>
+              <p>企業規模:<%= career.company_scale %></p> 
+              <p>役職:<%= career.position %></p>
+              <br>
+              <p>業務内容や実績</p>
+              <%= career.content %>
+            </div>
+            <div class="card-footer text-right" >
+              <%#= link_to 'Show', career, class: "btn btn-outline-secondary"  %>
+              <% if career.user == current_user %>
+                <%= link_to '編集', edit_career_path(career), class: "btn btn-outline-secondary"  %>
+                <%= link_to '削除', career, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-secondary"  %>
+              <% end %>  
+            </div>
+          <% end %>
+        <% else %>
+          <p class="h3">経歴が投稿されていません</p>
+        <% end %>
       </div>
-    <% end %>
-  <% else %>
-    <p class="h3">経歴が投稿されていません</p>
-  <% end %>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed text-dark btn btn-outline-secondary " type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          経験談一覧
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+        <% if @experiences.present? %>
+          <% @experiences.each do |experience| %>
+            <div class="h5 card mt-5">
+              <div class="card-body" >
+                <p class="mt-2">title:<%= experience.title %></p>
+                <p>
+                  学習時間:<%= experience.learn_hour %>時間
+                  目的：
+                </p>
+              </div>
+              <div class="card-footer text-right" >
+                <%= link_to '詳細', experience, class: "btn btn-outline-secondary"  %>
+                <% if experience.user == current_user %>
+                  <%= link_to '編集', edit_experience_path(experience), class: "btn btn-outline-secondary"  %>
+                  <%= link_to '削除', experience, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-secondary"  %>
+                <% end %>
+                <%= experience.updated_at.strftime("%Y/%m/%d %H:%M") %>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <p class="h3">経験談が投稿されていません</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card">
+      <div class="card-header" id="headingThree">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed text-dark btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            お気にり一覧
+          </button>
+        </h5>
+      </div>
+      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+        <div class="card-body">
+          <% if @experiences.present? %>
+            <% @experiences.each do |experience| %>
+              <div class="h5 card mt-5">
+                <div class="card-body" >
+                  <p class="mt-2">投稿者：<%= link_to experience.user.name, user_path(experience.user_id) %></p>
+                  <p class="mt-2">title:<%= experience.title %></p>
+                  <p>
+                    学習時間:<%= experience.learn_hour %>時間
+                    目的：
+                  </p>
+                </div>
+                <div class="card-footer text-right" >
+                  <%= link_to '詳細', experience, class: "btn btn-outline-secondary"  %>
+                  <% if experience.user == current_user %>
+                    <%= link_to '編集', edit_experience_path(experience), class: "btn btn-outline-secondary"  %>
+                    <%= link_to '削除', experience, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-secondary"  %>
+                  <% end %>
+                  <%= experience.updated_at.strftime("%Y/%m/%d %H:%M") %>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <p class="h3">お気に入りしている投稿はありません</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
