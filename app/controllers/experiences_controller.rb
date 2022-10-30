@@ -5,7 +5,7 @@ class ExperiencesController < ApplicationController
 
   # GET /experiences or /experiences.json
   def index
-    @experiences = Experience.all
+    @experiences = Experience.all.order(created_at: "DESC")
   end
 
   # GET /experiences/1 or /experiences/1.json
@@ -85,6 +85,6 @@ class ExperiencesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def experience_params
-      params.require(:experience).permit(:title, :industry, :occupation, :study_method, :learn_age, :learn_hour, :trigger, :ingenuity, :result, :user_id)
+      params.require(:experience).permit(:title, :industry, :occupation, :study_method, :learn_age, :learn_hour, :trigger, :ingenuity, :result, :user_id, { label_ids: [] })
     end
 end

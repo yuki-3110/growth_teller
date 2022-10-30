@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :purposes
   resources :experiences 
     # collection do
     #   post :index_user

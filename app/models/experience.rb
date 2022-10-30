@@ -10,6 +10,10 @@ class Experience < ApplicationRecord
   validates :ingenuity, presence: true
   validates :result, presence: true
 
+  has_many :middles, dependent: :destroy
+  has_many :purposes, through: :middles
+
+
   enum industry: { 
     'インターネット・IT・通信関連': 0, '金融関連': 1, '流通・小売関連': 2, 
     '食品関連': 3, '電気・精密機器関連': 4, '自動車・機械関連': 5,

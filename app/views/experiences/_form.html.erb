@@ -20,17 +20,25 @@
 
       <div class="field mt-4">
         <%= form.label :industry %>
-        <%= form.select :industry, Experience.industries.keys.map {|k| [t("enums.experience.industry.#{k}"), k]}, include_blank: '選択してください', class: 'form-control'  %>
+        <%= form.select :industry, Experience.industries.keys.map {|k| [t("enums.experience.industry.#{k}"), k]}, {include_blank: '選択してください'}, {class: 'form-control'} %>
       </div>
 
       <div class="field mt-4">
         <%= form.label :occupation %>
-        <%= form.select :occupation, Experience.occupations.keys.map {|k| [t("enums.experience.occupation.#{k}"), k]}, include_blank: '選択してください', class: 'form-control'  %>
+        <%= form.select :occupation, Experience.occupations.keys.map {|k| [t("enums.experience.occupation.#{k}"), k]}, {include_blank: '選択してください'}, {class: 'form-control'}  %>
+      </div>
+
+      <div class="field mt-4">
+        <%= form.label :目的（複数選択可） %><br>
+        <% Purpose.all.each do |purpose| %>
+          <%= form.check_box :purpose_ids, { multiple: true, checked: purpose[:checked], disabled: purpose[:disabled], include_hidden: false }, purpose[:id] %>
+          <%= form.label :purpose_ids, purpose.name, value: purpose[:id] %>
+        <% end %>
       </div>
 
       <div class="field mt-4">
         <%= form.label :study_method %>
-        <%= form.select :study_method, Experience.study_methods.keys.map {|k| [t("enums.experience.occupation.#{k}"), k]}, include_blank: '選択してください', class: 'form-control'  %>
+        <%= form.select :study_method, Experience.study_methods.keys.map {|k| [t("enums.experience.occupation.#{k}"), k]}, {include_blank: '選択してください'}, {class: 'form-control'}%>
       </div>
 
       <div class="field mt-4">

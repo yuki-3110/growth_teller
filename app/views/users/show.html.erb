@@ -37,7 +37,7 @@
       </h5>
     </div>
 
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+    <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
       <div class="card-body">
         <% if @careers.present? %>
           <% @careers.each do |career| %>
@@ -83,7 +83,9 @@
                 <p class="mt-2">title:<%= experience.title %></p>
                 <p>
                   学習時間:<%= experience.learn_hour %>時間
-                  目的：
+                  <% experience.purposes.each do |purpose| %>
+                    目的:<%= purpose.name %>
+                  <% end %>
                 </p>
               </div>
               <div class="card-footer text-right" >
