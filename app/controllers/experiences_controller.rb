@@ -6,6 +6,9 @@ class ExperiencesController < ApplicationController
   # GET /experiences or /experiences.json
   def index
     @experiences = Experience.all.order(created_at: "DESC")
+    @q = @experiences.ransack(params[:q])
+    @experiences_search = @q.result(distinct: true)
+    # @boards = @q.result(distinct: true).includes(:user).page(params[:page]).order("created_at desc")
   end
 
   # GET /experiences/1 or /experiences/1.json
