@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :purposes
   resources :experiences 
+  get 'search', to: 'experiences#search'
     # collection do
     #   post :index_user
     # end
