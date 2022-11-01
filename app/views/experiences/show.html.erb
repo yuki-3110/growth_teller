@@ -1,0 +1,45 @@
+<div class="h4 container" style=" margin-top: 200px;" >
+
+  <p>
+    <a>学習内容：</a>
+    <%= @experience.title %>
+  </p>
+
+  <div class="mt-5">
+    <a>【学習時の業種】</a>
+    <%= @experience.industry %> /
+  
+    <a>【学習時の職種】</a>
+    <%= @experience.occupation %>
+  </div>
+
+  <div class="mt-5">
+    <a>【勉強方法】</a>
+    <%= @experience.study_method %>
+  
+    <a>【学習時期】</a>
+    <%= @experience.learn_age %>
+  
+    <a>【総学習時間】</a>
+    <%= @experience.learn_hour %>時間
+  </div>
+
+  <div class="mt-5">
+    <a>【学習のきっかけや理由】</a><br>
+    <%= @experience.trigger %>
+  </div>
+
+  <div class="mt-5">
+    <a>【学習時の工夫】</a><br>
+    <%= @experience.ingenuity %>
+  </div>
+
+  <div class="mt-5">
+    <a>【学習の結果や感想】</a><br>
+    <%= @experience.result %>
+  </div>
+
+  <%= link_to '戻る', 'javascript:history.back()', class: "mt-5 btn btn-outline-secondary" %>
+  <%#= link_to '経験談一覧', experiences_path, class: "mt-4 btn btn-outline-secondary" %>
+  <%#= link_to '', user_path(current_user), class: "mt-4 btn btn-outline-secondary" %>
+</div>

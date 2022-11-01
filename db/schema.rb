@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_26_161944) do
+ActiveRecord::Schema.define(version: 2022_10_28_153319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,37 @@ ActiveRecord::Schema.define(version: 2022_10_26_161944) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_careers_on_user_id"
+  end
+
+  create_table "experiences", force: :cascade do |t|
+    t.string "title", null: false
+    t.integer "industry", null: false
+    t.integer "occupation", null: false
+    t.integer "study_method", null: false
+    t.date "learn_age", null: false
+    t.integer "learn_hour", null: false
+    t.text "trigger", null: false
+    t.text "ingenuity", null: false
+    t.text "result", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_experiences_on_user_id"
+  end
+
+  create_table "middles", force: :cascade do |t|
+    t.bigint "experience_id", null: false
+    t.bigint "purpose_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["experience_id"], name: "index_middles_on_experience_id"
+    t.index ["purpose_id"], name: "index_middles_on_purpose_id"
+  end
+
+  create_table "purposes", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -52,4 +83,7 @@ ActiveRecord::Schema.define(version: 2022_10_26_161944) do
   end
 
   add_foreign_key "careers", "users"
+  add_foreign_key "experiences", "users"
+  add_foreign_key "middles", "experiences"
+  add_foreign_key "middles", "purposes"
 end

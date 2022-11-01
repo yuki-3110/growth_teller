@@ -1,0 +1,73 @@
+<div class="container" style=" margin-top: 70px;">
+
+  <%#= search_form_for(@q, url:search_path) do |f| %>
+  <%= search_form_for @q do |f| %>
+    <div class="mt-4">
+      <%= f.label :title, '検索タイトル' %>
+      <%= f.search_field :title_cont, class: 'form-control', placeholder: '興味のある自己啓発ワードを入力してください' %>
+    </div>
+
+    <div class="mt-4">
+      <%= f.label :industry_eq, '学習時の業種' %>
+      <%#= f.select :industry_eq, User.roles_i18n.invert.map{|key, value| [key, User.roles[value]]}, { include_blank: "指定なし" } %>
+      <%#= f.select :industry_eq, Experience.industries.keys.to_a.map {|key, value| [key, Experience.industries[value]]}, { include_blank: "指定なし" }, {class: 'form-control'} %>
+      <%= f.select :industry_eq, Experience.industries.map {|k, v| [Experience.industries_i18n[k], v]}, { include_blank: "指定なし" }, {class: 'form-control'} %>
+
+      <%#= f.select :status_id_eq, Task.status_ids.map{|k, v| [Task.status_ids_i18n[k], v]} %>
+      <%#= f.select :industry_eq, Experience.industries.keys.to_a, {}, include_blank: '指定なし', class: 'form-control' %>
+      <%#= f.collection_select :industry_eq, Experience.all, :id, :industry, include_blank: '指定なし', class: 'mt-5 form-control' %><br>
+      <%= f.label :occupation_eq, '学習時の職種' %>
+      <%#= f.select :occupation_eq, Experience.occupations.keys.to_a.map{|key, value| [key, Experience.occupations[value]]}, { include_blank: "指定なし" }, {class: 'form-control'} %>
+      <%= f.select :occupation_eq, Experience.occupations.map {|k, v| [Experience.occupations_i18n[k], v]}, { include_blank: "指定なし" }, {class: 'form-control'} %>
+      <%#= f.collection_select :occupation_eq, @experiences, :id, :occupation, include_blank: '指定なし', class: 'mt-5 form-control' %><br>
+    </div>
+
+    <%# @experiences.each do |industry| %>
+      <%#= f.collection_select :industry_eq, :id, :industry, include_blank: '指定なし', class: 'mt-5 form-control'  %>
+      <%#= f.label industry[1] %>
+    <%# end %>
+
+    <div class="mt-2">
+      <%#= f.label :目的 %>
+      <%= f.label :purposes_id_in, "目的", {class: "input-text category-search"} %>
+      <%= f.collection_check_boxes(:purposes_id_in, Purpose.all, :id ,:name) do |b| %>
+        <%= b.check_box class: "btn-check" %>
+        <%= b.label(class: "btn btn-sm btn-outline-secondary") { b.text } %>
+      <% end %>
+    </div>
+      <%#= f.select("purpose_id", Purpose.pluck(:name, :id), { include_blank: 'ラベルを選択' }) %>
+      <%#= f.collection_check_boxes :purpose_id_in, @purposes, :id, :name, include_blank: '指定なし', class: 'mt-5 form-control' %><br>
+    <%= f.submit '検索', class: 'mt-3 btn btn-primary btn-lg' %>
+  <% end %>
+
+  <div class="mt-5">
+    <% unless @experiences.present? %>
+      <p class= "h4" >検索条件に一致する経験談はありません。</p>
+      <p class= "h4" >条件を変えて検索するか、直近で投稿された<%= link_to "経験談", experiences_path %>を確認しましょう！</p>
+    <% end %>
+  </div>
+
+  <% @experiences.each do |experience| %>
+    <div class="h5 card mt-5">
+      <div class="card-body" >
+        <p class="mt-2">投稿者：<%= link_to experience.user.name, user_path(experience.user_id) %></p>
+        <p class="mt-2">学習内容:<%= experience.title %></p>
+        <p>
+          学習時間:<%= experience.learn_hour %>時間
+          <% experience.purposes.each do |purpose| %>
+            目的:<%= purpose.name %>
+          <% end %>
+        </p>
+      </div>
+      <div class="card-footer text-right" >
+        <%= link_to '詳細', experience, class: "btn btn-outline-secondary"  %>
+        <% if experience.user == current_user %>
+          <%= link_to '編集', edit_experience_path(experience), class: "btn btn-outline-secondary"  %>
+          <%= link_to '削除', experience, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-secondary"  %>
+        <% end %>
+        <%= experience.updated_at.strftime("%Y/%m/%d %H:%M") %>
+      </div>
+    </div>
+  <% end %>
+
+</div>

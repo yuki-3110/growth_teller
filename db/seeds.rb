@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+purpose_names = ["起業", "転職", "昇給・昇格", "異動", "社内目標達成", "人間関係（マネジメント）", "メンタル" ]
+purpose_names.each do |purpose_name|
+  Purpose.create!(name: purpose_name)
+end

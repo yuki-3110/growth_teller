@@ -8,9 +8,10 @@ class User < ApplicationRecord
   validates :gender, presence: true
   validates :password, presence: true, on: :create
 
-  enum gender: { 男: 0, 女: 1}
+  enum gender: { 男性: 0, 女性: 1}
 
   has_many :careers, dependent: :destroy
+  has_many :experiences, dependent: :destroy
 
   def age
     today = Date.today.strftime("%Y%m%d").to_i
