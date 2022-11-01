@@ -2,7 +2,7 @@
   <%= form_with(model: experience, local: true) do |form| %>
     <% if experience.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(experience.errors.count, "error") %> prohibited this experience from being saved:</h2>
+        <h4><%= pluralize(experience.errors.count, "件のエラーが発生しました") %> </h4>
 
         <ul>
           <% experience.errors.full_messages.each do |message| %>
