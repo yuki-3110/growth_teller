@@ -26,7 +26,12 @@ ja:
         ingenuity: 学習時の工夫
         result: 学習の結果や感想
       #   memo: メモ
-  enums:
+  # enums:
+  #   user:
+  #     gender:
+  #       man: 男性
+  #       woman: 女性
+
     experience:
       industry:
         インターネット・IT・通信関連: インターネット・IT・通信関連
