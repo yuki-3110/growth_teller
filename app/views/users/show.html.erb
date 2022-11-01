@@ -17,10 +17,13 @@
   </div>
 
   <br>
-  <p class="h4">
+  <a class="h4">
     氏名: <%= @user.name %> | 年代: <%= @user_age %>代 | 性別: <%= @user.gender %>
-    <%= link_to "編集", edit_user_registration_path, class: "my-2 btn btn-outline-secondary" if current_user == @user %>
-  </p>
+
+    <div class= "mb-3  btn btn-outline-secondary" style= "margin-left: 10px;  ">
+      <%= link_to "編集", edit_user_registration_path, class: "text-dark" if current_user == @user %>
+    </div>
+  </a>
   
   <div class="mb-4" >
     <%= link_to '経歴を登録する', new_career_path, class: "mt-3 text-dark btn btn-outline-secondary" if @user == current_user %>
