@@ -12,6 +12,9 @@ class Experience < ApplicationRecord
 
   has_many :middles, dependent: :destroy
   has_many :purposes, through: :middles
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_users, through: :favorites, source: :user
+  
 
 
   # enum industry: { 

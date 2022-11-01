@@ -12,6 +12,8 @@ class User < ApplicationRecord
 
   has_many :careers, dependent: :destroy
   has_many :experiences, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_experiences, through: :favorites, source: :experience
 
   def age
     today = Date.today.strftime("%Y%m%d").to_i
