@@ -2,11 +2,15 @@ class ExperiencesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_experience, only: %i[ show edit update destroy ]
   before_action :check_user, only: %i[ edit update destroy ]
-  before_action :set_q, only: [:index, :search]
+  # before_action :set_q, only: [:index, :search]
 
   # GET /experiences or /experiences.json
   def index
-    @experiences = Experience.all.order(created_at: "DESC")
+    # @experiences = Experience.all.order(created_at: "DESC")
+
+    @q = Experience.ransack(params[:q])
+    @experiences = @q.result.order(created_at: :desc)
+
     # @q = Experience.ransack(params[:q])
     # @experiences = @q.result(distinct: true)
     # @purposes = Purpose.all
@@ -69,10 +73,10 @@ class ExperiencesController < ApplicationController
   #   @experiences = @q.result(distinct: true)
   # end
 
-  def search
-    @results = @q.result
-    # binding.irb
-  end
+  # def search
+  #   @results = @q.result
+  #   # binding.irb
+  # end
 
   # def index_user
   #   @user = User.find(params[:id])
@@ -92,9 +96,9 @@ class ExperiencesController < ApplicationController
       @experience = Experience.find(params[:id])
     end
 
-    def set_q
-      @q = Experience.ransack(params[:q])
-    end
+    # def set_q
+    #   @q = Experience.ransack(params[:q])
+    # end
 
     # def search_params
     #   params.require(:q).permit!

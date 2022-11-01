@@ -1,12 +1,16 @@
 <div class="container">
 
-  <%= search_form_for(@q, url:search_path) do |f| %>
+  <%#= search_form_for(@q, url:search_path) do |f| %>
+  <%= search_form_for @q do |f| %>
     <%= f.search_field :title_cont, class: 'mt-5 form-control', placeholder: '検索ワード' %>
 
     <div class="mt-4">
       <%= f.label :業種 %>
       <%#= f.select :industry_eq, User.roles_i18n.invert.map{|key, value| [key, User.roles[value]]}, { include_blank: "指定なし" } %>
       <%= f.select :industry_eq, Experience.industries.keys.to_a.map {|key, value| [key, Experience.industries[value]]}, { include_blank: "指定なし" }, {class: 'form-control'} %>
+      <%= f.select :industry_eq, Experience.industries.keys.to_a.map {|key, value| [key, Experience.industries[value]]}, { include_blank: "指定なし" }, {class: 'form-control'} %>
+
+      f.select :status_id_eq, Task.status_ids.map{|k, v| [Task.status_ids_i18n[k], v]}
       <%#= f.select :industry_eq, Experience.industries.keys.to_a, {}, include_blank: '指定なし', class: 'form-control' %>
       <%#= f.collection_select :industry_eq, Experience.all, :id, :industry, include_blank: '指定なし', class: 'mt-5 form-control' %><br>
       <%= f.label :職種 %>
@@ -19,10 +23,9 @@
       <%#= f.label industry[1] %>
     <%# end %>
 
-
     <div class="mt-2">
-      <%= f.label :目的 %>
-      <%#= f.label :purposes_id_in, "目的", {class: "input-text category-search"} %>
+      <%#= f.label :目的 %>
+      <%= f.label :purposes_id_in, "目的", {class: "input-text category-search"} %>
       <%= f.collection_check_boxes(:purposes_id_in, Purpose.all, :id ,:name) do |b| %>
         <%= b.check_box class: "btn-check" %>
         <%= b.label(class: "btn btn-sm btn-outline-secondary") { b.text } %>
