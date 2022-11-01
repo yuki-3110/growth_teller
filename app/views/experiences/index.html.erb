@@ -2,19 +2,23 @@
 
   <%#= search_form_for(@q, url:search_path) do |f| %>
   <%= search_form_for @q do |f| %>
-    <%= f.search_field :title_cont, class: 'mt-5 form-control', placeholder: '検索ワード' %>
+    <div class="mt-4">
+      <%= f.label :title, '検索タイトル' %>
+      <%= f.search_field :title_cont, class: 'form-control', placeholder: '興味のある自己啓発ワードを入力してください' %>
+    </div>
 
     <div class="mt-4">
-      <%= f.label :業種 %>
+      <%= f.label :industry_eq, '学習時の業種' %>
       <%#= f.select :industry_eq, User.roles_i18n.invert.map{|key, value| [key, User.roles[value]]}, { include_blank: "指定なし" } %>
-      <%= f.select :industry_eq, Experience.industries.keys.to_a.map {|key, value| [key, Experience.industries[value]]}, { include_blank: "指定なし" }, {class: 'form-control'} %>
-      <%= f.select :industry_eq, Experience.industries.keys.to_a.map {|key, value| [key, Experience.industries[value]]}, { include_blank: "指定なし" }, {class: 'form-control'} %>
+      <%#= f.select :industry_eq, Experience.industries.keys.to_a.map {|key, value| [key, Experience.industries[value]]}, { include_blank: "指定なし" }, {class: 'form-control'} %>
+      <%= f.select :industry_eq, Experience.industries.map {|k, v| [Experience.industries_i18n[k], v]}, { include_blank: "指定なし" }, {class: 'form-control'} %>
 
-      f.select :status_id_eq, Task.status_ids.map{|k, v| [Task.status_ids_i18n[k], v]}
+      <%#= f.select :status_id_eq, Task.status_ids.map{|k, v| [Task.status_ids_i18n[k], v]} %>
       <%#= f.select :industry_eq, Experience.industries.keys.to_a, {}, include_blank: '指定なし', class: 'form-control' %>
       <%#= f.collection_select :industry_eq, Experience.all, :id, :industry, include_blank: '指定なし', class: 'mt-5 form-control' %><br>
-      <%= f.label :職種 %>
-      <%= f.select :occupation_eq, Experience.occupations.keys.to_a.map{|key, value| [key, Experience.occupations[value]]}, { include_blank: "指定なし" }, {class: 'form-control'} %>
+      <%= f.label :occupation_eq, '学習時の職種' %>
+      <%#= f.select :occupation_eq, Experience.occupations.keys.to_a.map{|key, value| [key, Experience.occupations[value]]}, { include_blank: "指定なし" }, {class: 'form-control'} %>
+      <%= f.select :occupation_eq, Experience.occupations.map {|k, v| [Experience.occupations_i18n[k], v]}, { include_blank: "指定なし" }, {class: 'form-control'} %>
       <%#= f.collection_select :occupation_eq, @experiences, :id, :occupation, include_blank: '指定なし', class: 'mt-5 form-control' %><br>
     </div>
 
@@ -35,6 +39,8 @@
       <%#= f.collection_check_boxes :purpose_id_in, @purposes, :id, :name, include_blank: '指定なし', class: 'mt-5 form-control' %><br>
     <%= f.submit '検索', class: 'mt-3 btn btn-primary' %>
   <% end %>
+
+
 
   <% @experiences.each do |experience| %>
     <div class="h5 card mt-5">
