@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_28_153319) do
+ActiveRecord::Schema.define(version: 2022_11_01_151737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 2022_10_28_153319) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_experiences_on_user_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "experience_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["experience_id"], name: "index_favorites_on_experience_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "middles", force: :cascade do |t|
@@ -84,6 +93,8 @@ ActiveRecord::Schema.define(version: 2022_10_28_153319) do
 
   add_foreign_key "careers", "users"
   add_foreign_key "experiences", "users"
+  add_foreign_key "favorites", "experiences"
+  add_foreign_key "favorites", "users"
   add_foreign_key "middles", "experiences"
   add_foreign_key "middles", "purposes"
 end
