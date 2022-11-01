@@ -2,8 +2,8 @@
 
   <%= form_with(model: career, local: true) do |form| %>
     <% if career.errors.any? %>
-      <div id="error_explanation">
-        <h4><%= pluralize(career.errors.count, "件のエラーが発生しました") %> </h4>
+      <div class="alert alert-danger">
+        <h4 class="alert-heading"><%= pluralize(career.errors.count, "件のエラーが発生しました") %> </h4>
 
         <ul>
           <% career.errors.full_messages.each do |message| %>
