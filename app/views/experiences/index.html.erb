@@ -60,6 +60,17 @@
         </p>
       </div>
       <div class="card-footer text-right" >
+        <%# unless experience.user_id == current_user.id %>
+          <%# if current_user.favorites.where(id: experience.id, experience_id: experience.id).exists? %>
+        <% if current_user.favorites.where(experience_id: experience.id).exists? %>
+          <%= link_to '❤️', experience_favorite_path(id: experience.id, experience_id: experience.id), method: :delete, class: 'btn btn-lg' %>
+          <%= experience.favorites.count %>
+        <% else %>
+          <%= link_to '♡', experience_favorites_path(id: experience.id, experience_id: experience.id), method: :post, class: 'btn btn-lg' %>
+          <%= experience.favorites.count %>
+        <% end %>
+        <%# end %>
+
         <%= link_to '詳細', experience, class: "btn btn-outline-secondary"  %>
         <% if experience.user == current_user %>
           <%= link_to '編集', edit_experience_path(experience), class: "btn btn-outline-secondary"  %>
