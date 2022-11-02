@@ -32,7 +32,7 @@
       <%= f.label :purposes_id_in, "目的", {class: "input-text category-search"} %>
       <%= f.collection_check_boxes(:purposes_id_in, Purpose.all, :id ,:name) do |b| %>
         <%= b.check_box class: "btn-check" %>
-        <%= b.label(class: "btn btn-sm btn-outline-secondary") { b.text } %>
+        <%= b.label(class: "btn btn-sm btn-outline-secondary", 'date-toggle': "button", 'aria-pressed': "false", 'autocomplete': "on") { b.text } %>
       <% end %>
     </div>
       <%#= f.select("purpose_id", Purpose.pluck(:name, :id), { include_blank: 'ラベルを選択' }) %>
@@ -63,11 +63,9 @@
         <%# unless experience.user_id == current_user.id %>
           <%# if current_user.favorites.where(id: experience.id, experience_id: experience.id).exists? %>
         <% if current_user.favorites.where(experience_id: experience.id).exists? %>
-          <%= link_to '❤️', experience_favorite_path(id: experience.id, experience_id: experience.id), method: :delete, class: 'btn btn-lg' %>
-          <%= experience.favorites.count %>
+          <%= link_to '❤️', experience_favorite_path(id: experience.id, experience_id: experience.id), method: :delete, class: 'text-decoration-none' %><%= experience.favorites.count %>
         <% else %>
-          <%= link_to '♡', experience_favorites_path(id: experience.id, experience_id: experience.id), method: :post, class: 'btn btn-lg' %>
-          <%= experience.favorites.count %>
+          <%= link_to '♡', experience_favorites_path(id: experience.id, experience_id: experience.id), method: :post, class: 'text-decoration-none' %><%= experience.favorites.count %>
         <% end %>
         <%# end %>
 
