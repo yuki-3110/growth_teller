@@ -35,7 +35,11 @@
       <%= f.label :purposes_id_in, "目的（複数選択可）", {class: "input-text category-search"} %><br>
       <%= f.collection_check_boxes(:purposes_id_in, Purpose.all, :id ,:name) do |b| %>
         <%= b.check_box class: "btn-check" %>
-        <%= b.label(class: "btn btn-sm btn-outline-secondary", 'date-toggle': "button", 'aria-pressed': "false", 'autocomplete': "on") { b.text } %>
+        <%#= b.label(class: "btn btn-sm btn-outline-secondary", 'date-toggle': "button", 'aria-pressed': "false", 'autocomplete': "on") { b.text } %>
+        <%#= b.label(class: "btn btn-sm btn-outline-secondary", 'data-toggle': "button" ) { b.text } %>
+        <% active = "active" if params[:q].present? && params[:q][:purposes_id_in].include?(b.value.to_s) %>
+        <% aria_true = params[:q].present? && params[:q][:purposes_id_in].include?(b.value.to_s) %>
+        <%= b.label(class: "btn btn-sm btn-outline-secondary #{active}",'data-toggle': "button", 'aria-pressed': aria_true ) { b.text } %>
       <% end %>
     </div>
       <%#= f.select("purpose_id", Purpose.pluck(:name, :id), { include_blank: 'ラベルを選択' }) %>
