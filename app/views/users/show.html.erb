@@ -59,7 +59,7 @@
               <%#= link_to 'Show', career, class: "btn btn-outline-secondary"  %>
               <% if career.user == current_user %>
                 <%= link_to '編集', edit_career_path(career), class: "btn btn-outline-secondary"  %>
-                <%= link_to '削除', career, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-secondary"  %>
+                <%= link_to '削除', career, method: :delete, data: { confirm: '本当に消していいですか？' }, class: "btn btn-outline-secondary"  %>
               <% end %>  
             </div>
           <% end %>
@@ -94,7 +94,7 @@
                 <%= link_to '詳細', experience, class: "btn btn-outline-secondary"  %>
                 <% if experience.user == current_user %>
                   <%= link_to '編集', edit_experience_path(experience), class: "btn btn-outline-secondary"  %>
-                  <%= link_to '削除', experience, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-secondary"  %>
+                  <%= link_to '削除', experience, method: :delete, data: { confirm: '本当に消していいですか？' }, class: "btn btn-outline-secondary"  %>
                 <% end %>
                 <%= experience.updated_at.strftime("%Y/%m/%d %H:%M") %>
               </div>
@@ -133,7 +133,7 @@
                   <%= link_to '詳細', favorite.experience, class: "btn btn-outline-secondary"  %>
                   <% if favorite.experience.user == current_user %>
                     <%= link_to '編集', edit_experience_path(favorite.experience), class: "btn btn-outline-secondary"  %>
-                    <%= link_to '削除', favorite.experience, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-secondary"  %>
+                    <%= link_to '削除', favorite.experience, method: :delete, data: { confirm: '本当に消していいですか？' }, class: "btn btn-outline-secondary"  %>
                   <% end %>
                   <%= favorite.experience.updated_at.strftime("%Y/%m/%d %H:%M") %>
                 </div>
