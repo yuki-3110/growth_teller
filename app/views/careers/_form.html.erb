@@ -16,12 +16,14 @@
     <div class="h5">
       <div class="field mt-2">
         <%= form.label :industry %>
-        <%= form.select :industry, Career.industries.keys.map {|k| [t("enums.career.industry.#{k}"), k]}, {include_blank: '選択してください'}, {class: 'form-control'}  %>
+        <%#= form.select :industry, Career.industries.keys.map {|k| [t("enums.career.industry.#{k}"), k]}, {include_blank: '選択してください'}, {class: 'form-control'}  %>
+        <%= form.select :industry, Career.industries.keys, {include_blank: '選択してください'}, {class: 'form-control'}  %>
       </div>
 
       <div class="field mt-4" >
         <%= form.label :occupation %>
-        <%= form.select :occupation, Career.occupations.keys.map {|k| [t("enums.career.occupation.#{k}"), k]}, {include_blank: '選択してください'}, {class: 'form-control'}  %>
+        <%#= form.select :occupation, Career.occupations.keys.map {|k| [t("enums.career.occupation.#{k}"), k]}, {include_blank: '選択してください'}, {class: 'form-control'}  %>
+        <%= form.select :industry, Career.occupations.keys, {include_blank: '選択してください'}, {class: 'form-control'}  %>
       </div>
 
       <div class="field mt-4">
