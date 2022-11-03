@@ -18,7 +18,7 @@
 
   <br>
   <a class="h4">
-    氏名: <%= @user.name %> | 年代: <%= @user_age %>代 
+    氏名：<%= @user.name %> / 年代：<%= @user_age %>代 
     <% if current_user == @user  %>
     <div class= "mb-3  btn btn-outline-secondary" style= "margin-left: 10px;  ">
       <%= link_to "編集", edit_user_registration_path, class: "text-dark" %>
@@ -46,11 +46,11 @@
         <% if @careers.present? %>
           <% @careers.each do |career| %>
             <div class="h5 card mt-3">
-              <p class="mt-2">在籍期間:<%= career.start_day.strftime('%Y年 %m月') %> 〜 <%= career.end_day.strftime('%Y年 %m月') %></p>
-              <p>業種:<%= career.industry %></p> 
-              <p>職種:<%= career.occupation %></p>
-              <p>企業規模:<%= career.company_scale %></p> 
-              <p>役職:<%= career.position %></p>
+              <p class="mt-2">在籍期間：<%= career.start_day.strftime('%Y年 %m月') %> 〜 <%= career.end_day.strftime('%Y年 %m月') %></p>
+              <p>業種：<%= career.industry %></p> 
+              <p>職種：<%= career.occupation %></p>
+              <p>企業規模：<%= career.company_scale %></p> 
+              <p>役職：<%= career.position %></p>
               <br>
               <p>業務内容や実績</p>
               <%= career.content %>
@@ -84,10 +84,10 @@
           <% @experiences.each do |experience| %>
             <div class="h5 card mt-5">
               <div class="card-body" >
-                <p class="mt-2">title:<%= experience.title %></p>
+                <p class="mt-2">title：<%= experience.title %></p>
                 <p>
-                  学習時間:<%= experience.learn_hour %>時間
-                  目的:<%= experience.purposes.pluck(:name).join(', ') %>
+                  学習時間：<%= experience.learn_hour %>時間
+                  / 目的：<%= experience.purposes.pluck(:name).join('、') %>
                 </p>
               </div>
               <div class="card-footer text-right" >
@@ -123,10 +123,10 @@
               <div class="h5 card mt-5">
                 <div class="card-body" >
                   <p class="mt-2">投稿者：<%= link_to favorite.experience.user.name, user_path(favorite.experience.user_id) %></p>
-                  <p class="mt-2">title:<%= favorite.experience.title %></p>
+                  <p class="mt-2">title：<%= favorite.experience.title %></p>
                   <p>
-                    学習時間:<%= favorite.experience.learn_hour %>時間
-                    目的:<%= favorite.experience.purposes.pluck(:name).join(', ') %>
+                    学習時間：<%= favorite.experience.learn_hour %>時間
+                    / 目的：<%= favorite.experience.purposes.pluck(:name).join('、') %>
                   </p>
                 </div>
                 <div class="card-footer text-right" >
