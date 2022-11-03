@@ -18,7 +18,7 @@
 
   <br>
   <a class="h4">
-    氏名: <%= @user.name %> | 年代: <%= @user_age %>代 | 性別: <%= @user.gender %>
+    氏名: <%= @user.name %> | 年代: <%= @user_age %>代 
 
     <div class= "mb-3  btn btn-outline-secondary" style= "margin-left: 10px;  ">
       <%= link_to "編集", edit_user_registration_path, class: "text-dark" if current_user == @user %>
