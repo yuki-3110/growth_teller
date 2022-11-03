@@ -10,7 +10,7 @@ class ExperiencesController < ApplicationController
 
     @q = Experience.ransack(params[:q])
     @experiences = @q.result.order(created_at: :desc)
-
+    
     # @q = Experience.ransack(params[:q])
     # @experiences = @q.result(distinct: true)
     # @purposes = Purpose.all

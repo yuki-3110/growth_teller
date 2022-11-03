@@ -13,7 +13,6 @@
       <%#= f.select :industry_eq, Experience.industries.keys.to_a.map {|key, value| [key, Experience.industries[value]]}, { include_blank: "指定なし" }, {class: 'form-control'} %>
       <%= f.select :industry_eq, Experience.industries.map {|k, v| [Experience.industries_i18n[k], v]}, { include_blank: "指定なし" }, {class: 'form-control'} %>
       <%#= f.select :industry_eq, Experience.industries.keys, {include_blank: '選択してください'}, {class: 'form-control'}  %>
-      
 
       <%#= f.select :status_id_eq, Task.status_ids.map{|k, v| [Task.status_ids_i18n[k], v]} %>
       <%#= f.select :industry_eq, Experience.industries.keys.to_a, {}, include_blank: '指定なし', class: 'form-control' %>
