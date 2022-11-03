@@ -21,17 +21,16 @@
         <small>年齢は他のユーザーには公開されません。マイページに年代のみ表示されます。</small>
       </div>
 
-      <div class="badge field mt-3">
+      <div class="field mt-3">
         <h5><span class="badge badge-pill badge-danger">必須</span><%= f.label :gender %></h5>
       </div>
-      <br>
       <%= f.label :男性  %>
       <%= f.radio_button :gender, :man %>
       <%= f.label :女性  %>
       <%= f.radio_button :gender, :woman %>
       <%= f.label :その他  %>
-      <%= f.radio_button :gender, :other %>
-      <p><small> 性別は他のユーザーには公開されません。</small></p>
+      <%= f.radio_button :gender, :other %><br />
+      <small> 性別は他のユーザーには公開されません。</small>
 
       <div class="field mt-3">
         <h5><span class="badge badge-pill badge-danger">必須</span><%= f.label :email %></h5>
@@ -55,5 +54,8 @@
         <%= f.submit t('.sign_up'), class: "btn btn-lg btn-secondary btn-block btn-signin" %>
       </div>
     <% end %>
+  </div>
+  <div class="container text-center mt-3">
+    <%= link_to '戻る', 'javascript:history.back()', class: " btn btn-outline-secondary" %>
   </div>
 </div>   <%#= render "devise/shared/links" %>

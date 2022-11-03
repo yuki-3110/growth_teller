@@ -1,2 +1,56 @@
-<h1>Homes#index</h1>
-<p>Find me in app/views/homes/index.html.erb</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Growth Teller</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="javascript/all.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- Page Header-->
+    <header class=" masthead" style="background:url(<%= asset_path 'home-bg.jpg' %>); background-size:cover; background-position:center ">
+      <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="site-heading">
+              <h1>Growth Teller</h1>
+              <span class="subheading">自分に合った自己啓発を探しませんか？</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content-->
+    <div class="container px-4 px-lg-5" style=" margin-top: 70px;" >
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <h5>
+          <p>自己啓発を行う「目的」や「手法」が曖昧なまま勉強をしてしまうと、自身の理想に近づくために、遠回りだったとなることが少なくありません。</p>
+          <p>また自己啓発の「目的」や「手法」は、各々の状況（年齢・キャリア）によって異なるため、ネット検索で出てきた情報のうち、何が自分にとって最適で、取り入れるべきか判断することが難しい状況です。</p>
+        </h5>
+          
+      
+        
+        <h2 class="post-title mt-3">Growth Tellerで解決できる</h2>
+        <h5 class="post-subtitle">
+          <a>①自己啓発の「目的」や「手法」がまとめられた経験談を見ることができます。</a><br>
+          <a>②近しい年齢やキャリアの人が書いた経験談を、探すことができます。</a>
+        </h5>
+      </div>
+        
+      <div class="container text-center mt-5">
+        <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary mx-2 py-3" %><%= link_to "ログイン", new_user_session_path, class: "btn btn-primary py-3" %>
+      </div>
+    </div>
+  </body>
+</html>
