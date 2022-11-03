@@ -41,8 +41,11 @@
   <% end %>
 
   <div class="mt-5">
-    <% unless @experiences.present? %>
-      <p class= "h4" >検索条件に一致する経験談はありません。</p>
+    <% if @experiences.nil? %>
+      <%# unless @experiences.present? %>
+      <%# end %>
+    <%  else params[:q].present? && @experiences.present? %>
+      <p class= "h4" >検索条件に一致する経験談がありません。</p>
       <p class= "h4" >条件を変えて検索するか、直近で投稿された<%= link_to "経験談", experiences_path %>を確認しましょう！</p>
     <% end %>
   </div>
