@@ -3,12 +3,14 @@ class Experience < ApplicationRecord
   validates :title, presence: true
   validates :industry, presence: true
   validates :occupation, presence: true
+  validate :add_validation
   validates :study_method, presence: true
   validates :learn_age, presence: true
   validates :learn_hour, presence: true
   validates :trigger, presence: true
   validates :ingenuity, presence: true
   validates :result, presence: true
+  
 
   has_many :middles, dependent: :destroy
   has_many :purposes, through: :middles
@@ -51,5 +53,13 @@ class Experience < ApplicationRecord
     書籍・雑誌: 0, セミナー・勉強会: 1, スクール: 2, 資格検定試験: 3,
     社会人大学院: 4, Eラーニング: 5, カウンセリング・コーチング: 6, 
   }
+
+  private
+  def add_validation
+    unless purposes.present?
+      # errors.add(:目的を入力してください。, "目的を入力してください。")
+      errors.add(:目的, "を入力してください")
+    end
+  end
 
 end
