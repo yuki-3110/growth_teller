@@ -11,8 +11,8 @@
       <%= f.label :industry_eq, '学習時の業種' %>
       <%#= f.select :industry_eq, User.roles_i18n.invert.map{|key, value| [key, User.roles[value]]}, { include_blank: "指定なし" } %>
       <%#= f.select :industry_eq, Experience.industries.keys.to_a.map {|key, value| [key, Experience.industries[value]]}, { include_blank: "指定なし" }, {class: 'form-control'} %>
-      <%#= f.select :industry_eq, Experience.industries.map {|k, v| [Experience.industries_i18n[k], v]}, { include_blank: "指定なし" }, {class: 'form-control'} %>
-      <%= f.select :industry_eq, Experience.industries.keys, {include_blank: '選択してください'}, {class: 'form-control'}  %>
+      <%= f.select :industry_eq, Experience.industries.map {|k, v| [Experience.industries_i18n[k], v]}, { include_blank: "指定なし" }, {class: 'form-control'} %>
+      <%#= f.select :industry_eq, Experience.industries.keys, {include_blank: '選択してください'}, {class: 'form-control'}  %>
       
 
       <%#= f.select :status_id_eq, Task.status_ids.map{|k, v| [Task.status_ids_i18n[k], v]} %>
@@ -20,8 +20,8 @@
       <%#= f.collection_select :industry_eq, Experience.all, :id, :industry, include_blank: '指定なし', class: 'mt-5 form-control' %><br>
       <%= f.label :occupation_eq, '学習時の職種' %>
       <%#= f.select :occupation_eq, Experience.occupations.keys.to_a.map{|key, value| [key, Experience.occupations[value]]}, { include_blank: "指定なし" }, {class: 'form-control'} %>
-      <%#= f.select :occupation_eq, Experience.occupations.map {|k, v| [Experience.occupations_i18n[k], v]}, { include_blank: "指定なし" }, {class: 'form-control'} %>
-      <%= f.select :occupation_eq, Experience.occupations.keys, {include_blank: '選択してください'}, {class: 'form-control'}  %>
+      <%= f.select :occupation_eq, Experience.occupations.map {|k, v| [Experience.occupations_i18n[k], v]}, { include_blank: "指定なし" }, {class: 'form-control'} %>
+      <%#= f.select :occupation_eq, Experience.occupations.keys, {include_blank: '選択してください'}, {class: 'form-control'}  %>
       <%#= f.collection_select :occupation_eq, @experiences, :id, :occupation, include_blank: '指定なし', class: 'mt-5 form-control' %><br>
     </div>
 
@@ -43,15 +43,15 @@
     <%= f.submit '検索', class: 'mt-3 btn btn-primary btn-lg' %>
   <% end %>
 
-  <div class="mt-5">
-    <% if @experiences.nil? %>
-      <%# unless @experiences.present? %>
-      <%# end %>
-    <%  else params[:q].present? && @experiences.present? %>
-      <p class= "h4" >検索条件に一致する経験談がありません。</p>
-      <p class= "h4" >条件を変えて検索するか、直近で投稿された<%= link_to "経験談", experiences_path %>を確認しましょう！</p>
-    <% end %>
-  </div>
+  <% unless @experiences.present? %>
+    <div class="mt-5">
+      <%  if params[:q].present? %>
+        <p class= "h4" >検索条件に一致する経験談がありません。</p>
+        <p class= "h4" >条件を変えて検索するか、直近で投稿された<%= link_to "経験談", experiences_path %>を確認しましょう！</p>
+      <% else %>
+      <% end %>
+    </div>
+  <% end %>
 
   <% @experiences.each do |experience| %>
     <div class="h5 card mt-5">
