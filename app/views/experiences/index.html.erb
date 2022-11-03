@@ -32,7 +32,7 @@
 
     <div class="mt-2">
       <%#= f.label :目的 %>
-      <%= f.label :purposes_id_in, "目的", {class: "input-text category-search"} %>
+      <%= f.label :purposes_id_in, "目的（複数選択可）", {class: "input-text category-search"} %><br>
       <%= f.collection_check_boxes(:purposes_id_in, Purpose.all, :id ,:name) do |b| %>
         <%= b.check_box class: "btn-check" %>
         <%= b.label(class: "btn btn-sm btn-outline-secondary", 'date-toggle': "button", 'aria-pressed': "false", 'autocomplete': "on") { b.text } %>
@@ -60,9 +60,7 @@
         <p class="mt-2">学習内容:<%= experience.title %></p>
         <p>
           学習時間:<%= experience.learn_hour %>時間
-          <% experience.purposes.each do |purpose| %>
-            目的:<%= purpose.name %>
-          <% end %>
+          目的:<%= experience.purposes.pluck(:name).join(', ') %>
         </p>
       </div>
       <div class="card-footer text-right" >
