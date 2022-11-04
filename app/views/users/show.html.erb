@@ -130,6 +130,12 @@
                   </p>
                 </div>
                 <div class="card-footer text-right" >
+                  <%# if favorite.present? %>
+                    <%#= link_to '❤️', experience_favorite_path(favorite.experience.id), method: :delete, class: 'text-decoration-none' %><%#= favorite.experience.favorites.count %>
+                  <%# else %>
+                    <%#= link_to '♡', experience_favorites_path(favorite.experience.id), method: :post, class: 'text-decoration-none' %><%#= favorite.experience.favorites.count %>
+                  <%# end %>
+
                   <%= link_to '詳細', favorite.experience, class: "btn btn-outline-secondary"  %>
                   <% if favorite.experience.user == current_user %>
                     <%= link_to '編集', edit_experience_path(favorite.experience), class: "btn btn-outline-secondary"  %>

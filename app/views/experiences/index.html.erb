@@ -67,6 +67,11 @@
         </p>
       </div>
       <div class="card-footer text-right" >
+        <%#= render partial: 'favorites/favorite', locals: { experience: experience } %>
+        <div id="favorite_index_<%#= experience.id %>" >
+          <%#= render "favorites/favorite" , experience: experience %>
+          <%#= render "favorites/favorite" , locals: {experience: experience}  %>
+        </div>
         <%# unless experience.user_id == current_user.id %>
           <%# if current_user.favorites.where(id: experience.id, experience_id: experience.id).exists? %>
         <% if current_user.favorites.where(experience_id: experience.id).exists? %>

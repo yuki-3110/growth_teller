@@ -1,4 +1,5 @@
 class FavoritesController < ApplicationController
+  # before_action :experience_params, only: [:create, :destroy]
   # def create
   #   favorite = current_user.favorites.create(blog_id: params[:blog_id])
   #   redirect_to blogs_path, notice: "#{favorite.blog.user.name}さんのブログをお気に入り登録しました"
@@ -6,6 +7,10 @@ class FavoritesController < ApplicationController
 
   def create
     @favorite = current_user.favorites.create(experience_id: params[:experience_id])
+
+    # favorite = Favorite.create(user_id: current_user.id, experience_id: params[:id])
+
+
     # binding.irb
     redirect_back(fallback_location: root_path)
     # redirect_to experiences_path, notice: "#{favorite.experience.user.name}さんのブログをお気に入り登録しました"
@@ -15,8 +20,16 @@ class FavoritesController < ApplicationController
 
   def destroy
     @favorite = current_user.favorites.find_by(experience_id: params[:experience_id]).destroy
+    # favorite = Favorite.find_by(user_id: current_user.id, experience_id: params[:id])
+    # favorite.destroy
     redirect_back(fallback_location: root_path)
   end
+
+  private
+
+  # def experience_params
+  #   @experience = Experience.find(params[:id])
+  # end
 
   # def destroy
   #   @experience = Experience.find(params[:experience_id])

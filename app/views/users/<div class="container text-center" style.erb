@@ -173,6 +173,21 @@
             </div>
 
 
+      <% if current_user.favorites.where(experience_id: experience.id).exists? %>
+  <%= link_to experience_favorite_path(id: experience.id, experience_id: experience.id),  method: :delete, remote: true do %>
+    <%#= button_tag(type: "submit", class: "favorite-button fav-on ms-3 d-flex align-items-center") do %>
+      <i class="btn fas fa-heart" style="color: red;"></i><%= experience.favorites.count %>
+    <%# end %>
+  <% end %>
+<% else %>
+  <%= link_to experience_favorites_path(id: experience.id, experience_id: experience.id),  method: :post, remote: true do %>
+    <%#= button_tag(type: "submit", class: "favorite-button fav-on ms-3 d-flex align-items-center") do %>
+      <i class="btn far fa-heart" style="color: black;"></i><%= experience.favorites.count %>
+    <%# end %>
+  <% end %>
+<% end %>
+
+
 
 
 

@@ -27,4 +27,9 @@ class User < ApplicationRecord
   #     user_age.floor(-1)
   #   end
   end
+
+  # def favorited_by?(experience_id)
+  #   favorites.where(experience_id: experience_id).exists?
+  # end
+  
 end
