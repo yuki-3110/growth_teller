@@ -202,3 +202,16 @@ div class="container px-4 px-lg-5" >
               <p>また自己啓発の「目的」や「手法」は、各々の状況（年齢・キャリア）によって異なるため、ネット検索で出てきた情報のうち、何が自分にとって最適で、取り入れるべきか判断することが難しい状況です。</p>
             </h4>
           </div>
+
+
+          <div class="field mt-4">
+        <%= form.label :目的（複数選択可） %><br>
+        <% Purpose.all.each do |purpose| %>
+          <%= form.check_box :purpose_ids, { multiple: true, checked: purpose[:checked], disabled: purpose[:disabled], include_hidden: false }, purpose[:id], class: "btn-check" %>
+
+          <%#= form.collection_check_boxes(:purpose_ids, Purpose.all, :id ,:name) do |b| %>
+            <%#= form.check_box class: "btn-check" %>
+            <%= form.label :purpose_ids, purpose.name, value: purpose[:id],class: "btn btn-sm btn-outline-secondary", 'data-toggle': "button", 'aria-pressed': "false"  %>
+          <%# end %>
+        <% end %>
+      </div>

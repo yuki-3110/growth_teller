@@ -25,6 +25,7 @@ class ExperiencesController < ApplicationController
   # GET /experiences/new
   def new
     @experience = Experience.new
+    # @purposes = Purpose.all
   end
 
   # GET /experiences/1/edit
