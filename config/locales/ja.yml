@@ -12,6 +12,9 @@ ja:
         name: 名前
         birthday: 生年月日
         gender: 性別
+        man: 男性
+        woman: 女性
+        other: その他
 
   # enums:
   #   experience:

@@ -128,3 +128,105 @@
     </div>
   </div>  
 </div>
+
+
+
+
+
+
+
+
+
+<!-- Main Content-->
+    <div class="main" style="background-color:#dddddd;">
+      <div class="container px-4 px-lg-5" >
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7" >
+            
+            <div class="post-preview mt-5" style="background-color:white; ">
+              <h2 class="post-title">Man must explore, and this is exploration at its greatest</h2>
+              <h3 class="post-subtitle">Problems look mighty small from 150 miles up</h3>
+              <p class="post-meta">Posted by on September 24, 2022 </p>
+            
+            
+            <hr class="my-4" />
+            
+           
+              <h2 class="post-title">Man must explore, and this is exploration at its greatest</h2>
+              <h3 class="post-subtitle">Problems look mighty small from 150 miles up</h3>
+              <p class="post-meta">Posted by on September 24, 2022 </p>
+            
+            
+            <hr class="my-4" />
+           
+              <h2 class="post-title">Man must explore, and this is exploration at its greatest</h2>
+              <h3 class="post-subtitle">Problems look mighty small from 150 miles up</h3>
+              <p class="post-meta">Posted by on September 24, 2022 </p>
+           
+            
+            <hr class="my-4" />
+            
+              
+          </div>
+            <div class="container text-center mb-5">
+              <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary mx-2 py-3" %><%= link_to "ログイン", new_user_session_path, class: "btn btn-primary py-3" %>
+            </div>
+
+
+      <% if current_user.favorites.where(experience_id: experience.id).exists? %>
+  <%= link_to experience_favorite_path(id: experience.id, experience_id: experience.id),  method: :delete, remote: true do %>
+    <%#= button_tag(type: "submit", class: "favorite-button fav-on ms-3 d-flex align-items-center") do %>
+      <i class="btn fas fa-heart" style="color: red;"></i><%= experience.favorites.count %>
+    <%# end %>
+  <% end %>
+<% else %>
+  <%= link_to experience_favorites_path(id: experience.id, experience_id: experience.id),  method: :post, remote: true do %>
+    <%#= button_tag(type: "submit", class: "favorite-button fav-on ms-3 d-flex align-items-center") do %>
+      <i class="btn far fa-heart" style="color: black;"></i><%= experience.favorites.count %>
+    <%# end %>
+  <% end %>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+            <hr class="my-4" />
+          <div class="post-preview">
+            <h2 class="post-title">Growth Tellerだからできること</h2>
+            <h4 class="post-subtitle">Problems look mighty small from 150 miles up</h4>
+          </div>
+          
+          <hr class="my-4" />
+
+
+div class="container px-4 px-lg-5" >
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+          <div class="post-preview">
+            <h2 class="post-title"></h2>
+            <h4 class="container">
+              <p>自己啓発を行う「目的」や「手法」が曖昧なまま勉強をしてしまうと、自身の理想に近づくために、遠回りだったとなることが少なくありません。</p>
+              <p>また自己啓発の「目的」や「手法」は、各々の状況（年齢・キャリア）によって異なるため、ネット検索で出てきた情報のうち、何が自分にとって最適で、取り入れるべきか判断することが難しい状況です。</p>
+            </h4>
+          </div>
+
+
+          <div class="field mt-4">
+        <%= form.label :目的（複数選択可） %><br>
+        <% Purpose.all.each do |purpose| %>
+          <%= form.check_box :purpose_ids, { multiple: true, checked: purpose[:checked], disabled: purpose[:disabled], include_hidden: false }, purpose[:id], class: "btn-check" %>
+
+          <%#= form.collection_check_boxes(:purpose_ids, Purpose.all, :id ,:name) do |b| %>
+            <%#= form.check_box class: "btn-check" %>
+            <%= form.label :purpose_ids, purpose.name, value: purpose[:id],class: "btn btn-sm btn-outline-secondary", 'data-toggle': "button", 'aria-pressed': "false"  %>
+          <%# end %>
+        <% end %>
+      </div>

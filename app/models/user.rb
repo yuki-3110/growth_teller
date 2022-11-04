@@ -8,10 +8,12 @@ class User < ApplicationRecord
   validates :gender, presence: true
   validates :password, presence: true, on: :create
 
-  enum gender: { 男性: 0, 女性: 1}
+  enum gender: { man: 0, woman: 1, other: 2}
 
   has_many :careers, dependent: :destroy
   has_many :experiences, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_experiences, through: :favorites, source: :experience
 
   def age
     today = Date.today.strftime("%Y%m%d").to_i
@@ -25,4 +27,9 @@ class User < ApplicationRecord
   #     user_age.floor(-1)
   #   end
   end
+
+  # def favorited_by?(experience_id)
+  #   favorites.where(experience_id: experience_id).exists?
+  # end
+  
 end

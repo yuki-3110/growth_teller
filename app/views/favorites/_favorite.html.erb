@@ -1,0 +1,12 @@
+<% if current_user.favorited_by?(experience.id) %>
+  <%= link_to experience_favorite_path(experience), class: 'btn', method: :delete, remote: true do  %>
+    <i class="fas fa-heart" style="color: red;"></i><%= experience.favorites.count %>
+  <% end %>
+<% else %>
+  <%= link_to experience_favorites_path(experience), class: 'btn', method: :post, remote: true do  %>
+    <i class="far fa-heart" style="color: black;"></i><%= experience.favorites.count %>
+  <% end %>
+<% end %>
+
+
+

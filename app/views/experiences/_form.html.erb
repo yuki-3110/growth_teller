@@ -1,8 +1,8 @@
 <div class="container" style=" margin-top: 50px;" >
   <%= form_with(model: experience, local: true) do |form| %>
     <% if experience.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(experience.errors.count, "error") %> prohibited this experience from being saved:</h2>
+      <div class="alert alert-danger">
+        <h4 class="alert-heading"><%= pluralize(experience.errors.count, "件のエラーが発生しました") %> </h4>
 
         <ul>
           <% experience.errors.full_messages.each do |message| %>
@@ -20,12 +20,14 @@
 
       <div class="field mt-4">
         <%= form.label :industry %>
-        <%= form.select :industry, Experience.industries.keys.map {|k| [t("enums.experience.industry.#{k}"), k]}, {include_blank: '選択してください'}, {class: 'form-control'} %>
+        <%#= form.select :industry, Experience.industries.keys.map {|k| [t("enums.experience.industry.#{k}"), k]}, {include_blank: '選択してください'}, {class: 'form-control'} %>
+        <%= form.select :industry, Experience.industries.keys, {include_blank: '選択してください'}, {class: 'form-control'}  %>
       </div>
 
       <div class="field mt-4">
         <%= form.label :occupation %>
-        <%= form.select :occupation, Experience.occupations.keys.map {|k| [t("enums.experience.occupation.#{k}"), k]}, {include_blank: '選択してください'}, {class: 'form-control'}  %>
+        <%#= form.select :occupation, Experience.occupations.keys.map {|k| [t("enums.experience.occupation.#{k}"), k]}, {include_blank: '選択してください'}, {class: 'form-control'}  %>
+        <%= form.select :occupation, Experience.occupations.keys, {include_blank: '選択してください'}, {class: 'form-control'}  %>
       </div>
 
       <div class="field mt-4">

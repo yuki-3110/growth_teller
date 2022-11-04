@@ -10,7 +10,7 @@ class ExperiencesController < ApplicationController
 
     @q = Experience.ransack(params[:q])
     @experiences = @q.result.order(created_at: :desc)
-
+    
     # @q = Experience.ransack(params[:q])
     # @experiences = @q.result(distinct: true)
     # @purposes = Purpose.all
@@ -19,11 +19,13 @@ class ExperiencesController < ApplicationController
 
   # GET /experiences/1 or /experiences/1.json
   def show
+    @favorite = current_user.favorites.find_by(experience_id: @experience.id)
   end
 
   # GET /experiences/new
   def new
     @experience = Experience.new
+    # @purposes = Purpose.all
   end
 
   # GET /experiences/1/edit
@@ -36,7 +38,7 @@ class ExperiencesController < ApplicationController
 
     respond_to do |format|
       if @experience.save
-        format.html { redirect_to experiences_path, notice: "Experience was successfully created." }
+        format.html { redirect_to experiences_path, notice: "経験談を投稿しました。" }
         format.json { render :show, status: :created, location: @experience }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -49,7 +51,7 @@ class ExperiencesController < ApplicationController
   def update
     respond_to do |format|
       if @experience.update(experience_params)
-        format.html { redirect_to experiences_path, notice: "Experience was successfully updated." }
+        format.html { redirect_to experiences_path, notice: "経験談を更新しました。" }
         format.json { render :show, status: :ok, location: @experience }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -63,7 +65,7 @@ class ExperiencesController < ApplicationController
     @experience.destroy
 
     respond_to do |format|
-      format.html { redirect_to experiences_url, notice: "Experience was successfully destroyed." }
+      format.html { redirect_to experiences_url, notice: "経験談を削除しました。" }
       format.json { head :no_content }
     end
   end
@@ -112,6 +114,6 @@ class ExperiencesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def experience_params
-      params.require(:experience).permit(:title, :industry, :occupation, :study_method, :learn_age, :learn_hour, :trigger, :ingenuity, :result, :user_id, { label_ids: [] })
+      params.require(:experience).permit(:title, :industry, :occupation, :study_method, :learn_age, :learn_hour, :trigger, :ingenuity, :result, :user_id, { purpose_ids: [] })
     end
 end

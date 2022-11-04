@@ -18,11 +18,12 @@
 
   <br>
   <a class="h4">
-    氏名: <%= @user.name %> | 年代: <%= @user_age %>代 | 性別: <%= @user.gender %>
-
+    氏名：<%= @user.name %> / 年代：<%= @user_age %>代 
+    <% if current_user == @user  %>
     <div class= "mb-3  btn btn-outline-secondary" style= "margin-left: 10px;  ">
-      <%= link_to "編集", edit_user_registration_path, class: "text-dark" if current_user == @user %>
+      <%= link_to "編集", edit_user_registration_path, class: "text-dark" %>
     </div>
+    <% end %>
   </a>
   
   <div class="mb-4" >
@@ -45,11 +46,11 @@
         <% if @careers.present? %>
           <% @careers.each do |career| %>
             <div class="h5 card mt-3">
-              <p class="mt-2">在籍期間:<%= career.start_day.strftime('%Y年 %m月') %> 〜 <%= career.end_day.strftime('%Y年 %m月') %></p>
-              <p>業種:<%= career.industry %></p> 
-              <p>職種:<%= career.occupation %></p>
-              <p>企業規模:<%= career.company_scale %></p> 
-              <p>役職:<%= career.position %></p>
+              <p class="mt-2">在籍期間：<%= career.start_day.strftime('%Y年 %m月') %> 〜 <%= career.end_day.strftime('%Y年 %m月') %></p>
+              <p>業種：<%= career.industry %></p> 
+              <p>職種：<%= career.occupation %></p>
+              <p>企業規模：<%= career.company_scale %></p> 
+              <p>役職：<%= career.position %></p>
               <br>
               <p>業務内容や実績</p>
               <%= career.content %>
@@ -58,7 +59,7 @@
               <%#= link_to 'Show', career, class: "btn btn-outline-secondary"  %>
               <% if career.user == current_user %>
                 <%= link_to '編集', edit_career_path(career), class: "btn btn-outline-secondary"  %>
-                <%= link_to '削除', career, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-secondary"  %>
+                <%= link_to '削除', career, method: :delete, data: { confirm: '本当に消していいですか？' }, class: "btn btn-outline-secondary"  %>
               <% end %>  
             </div>
           <% end %>
@@ -83,19 +84,17 @@
           <% @experiences.each do |experience| %>
             <div class="h5 card mt-5">
               <div class="card-body" >
-                <p class="mt-2">title:<%= experience.title %></p>
+                <p class="mt-2">title：<%= experience.title %></p>
                 <p>
-                  学習時間:<%= experience.learn_hour %>時間
-                  <% experience.purposes.each do |purpose| %>
-                    目的:<%= purpose.name %>
-                  <% end %>
+                  学習時間：<%= experience.learn_hour %>時間
+                  / 目的：<%= experience.purposes.pluck(:name).join('、') %>
                 </p>
               </div>
               <div class="card-footer text-right" >
                 <%= link_to '詳細', experience, class: "btn btn-outline-secondary"  %>
                 <% if experience.user == current_user %>
                   <%= link_to '編集', edit_experience_path(experience), class: "btn btn-outline-secondary"  %>
-                  <%= link_to '削除', experience, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-secondary"  %>
+                  <%= link_to '削除', experience, method: :delete, data: { confirm: '本当に消していいですか？' }, class: "btn btn-outline-secondary"  %>
                 <% end %>
                 <%= experience.updated_at.strftime("%Y/%m/%d %H:%M") %>
               </div>
@@ -113,38 +112,50 @@
       <div class="card-header" id="headingThree">
         <h5 class="mb-0">
           <button class="btn btn-link collapsed text-dark btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            お気にり一覧
+            いいね一覧
           </button>
         </h5>
       </div>
       <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
         <div class="card-body">
-          <% if @experiences.present? %>
-            <% @experiences.each do |experience| %>
+          <% if @favorites.present? %>
+            <% @favorites.each do |favorite| %>
               <div class="h5 card mt-5">
                 <div class="card-body" >
-                  <p class="mt-2">投稿者：<%= link_to experience.user.name, user_path(experience.user_id) %></p>
-                  <p class="mt-2">title:<%= experience.title %></p>
+                  <p class="mt-2">投稿者：<%= link_to favorite.experience.user.name, user_path(favorite.experience.user_id) %></p>
+                  <p class="mt-2">title：<%= favorite.experience.title %></p>
                   <p>
-                    学習時間:<%= experience.learn_hour %>時間
-                    目的：
+                    学習時間：<%= favorite.experience.learn_hour %>時間
+                    / 目的：<%= favorite.experience.purposes.pluck(:name).join('、') %>
                   </p>
                 </div>
                 <div class="card-footer text-right" >
-                  <%= link_to '詳細', experience, class: "btn btn-outline-secondary"  %>
-                  <% if experience.user == current_user %>
-                    <%= link_to '編集', edit_experience_path(experience), class: "btn btn-outline-secondary"  %>
-                    <%= link_to '削除', experience, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-secondary"  %>
+                  <%# if favorite.present? %>
+                    <%#= link_to '❤️', experience_favorite_path(favorite.experience.id), method: :delete, class: 'text-decoration-none' %><%#= favorite.experience.favorites.count %>
+                  <%# else %>
+                    <%#= link_to '♡', experience_favorites_path(favorite.experience.id), method: :post, class: 'text-decoration-none' %><%#= favorite.experience.favorites.count %>
+                  <%# end %>
+
+                  <%= link_to '詳細', favorite.experience, class: "btn btn-outline-secondary"  %>
+                  <% if favorite.experience.user == current_user %>
+                    <%= link_to '編集', edit_experience_path(favorite.experience), class: "btn btn-outline-secondary"  %>
+                    <%= link_to '削除', favorite.experience, method: :delete, data: { confirm: '本当に消していいですか？' }, class: "btn btn-outline-secondary"  %>
                   <% end %>
-                  <%= experience.updated_at.strftime("%Y/%m/%d %H:%M") %>
+                  <%= favorite.experience.updated_at.strftime("%Y/%m/%d %H:%M") %>
                 </div>
               </div>
             <% end %>
           <% else %>
-            <p class="h3">お気に入りしている投稿はありません</p>
+            <p class="h3">いいねしている投稿はありません</p>
           <% end %>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="container text-center mt-3">
+    <%= link_to '戻る', 'javascript:history.back()', class: " btn btn-outline-secondary" %>
+  </div>
 </div>
+
+

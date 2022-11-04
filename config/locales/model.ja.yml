@@ -32,6 +32,7 @@ ja:
   #       man: 男性
   #       woman: 女性
 
+  enums:
     experience:
       industry:
         インターネット・IT・通信関連: インターネット・IT・通信関連
@@ -74,9 +75,9 @@ ja:
         カウンセリング・コーチング: カウンセリング・コーチング
 
 
-    # enums:
-    #   career:
-    #     industry:
-    #       インターネット・It・通信関連: インターネット・IT・通信関連
-    #       medium: 中
-    #       low: 低
+      # enums:
+      #   career:
+      #     industry:
+      #       インターネット・It・通信関連: インターネット・IT・通信関連
+      #       medium: 中
+      #       low: 低

@@ -16,7 +16,7 @@
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-warning">
-    <%= link_to "growth teller", root_path , class: "navbar-brand" %>
+    <%= link_to "Growth Teller", root_path , class: "navbar-brand" %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -42,16 +42,16 @@
     </nav>
 
       <% if notice %>
-        <p class="alert alert-notice"><%= notice %></p>
+        <p class="alert alert-primary"><%= notice %></p>
       <% end %>
       <% if alert %>
-        <p class="alert alert-error"><%= alert %></p>
+        <p class="alert alert-danger"><%= alert %></p>
       <% end %>
 
       <%= yield %>
 
     <footer class="fixed-bottom text-center text-black bg-warning" style="height: 80px;">
-      <div class="container p-4 h5">© 2022 growth-teller All Rights Reserved.</div>
+      <div class="container p-4 h5">© 2022 Growth-Teller All Rights Reserved.</div>
     </footer>
 
   </body>
