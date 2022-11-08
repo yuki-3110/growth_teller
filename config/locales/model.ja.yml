@@ -19,8 +19,8 @@ ja:
         title: 学習内容
         industry: 学習時の業種
         occupation: 学習時の職種
-        study_method: 学習方法
-        learn_age: 学習時期
+        study_method: 自己啓発種類
+        learn_age: 学習開始時期
         learn_hour: 総学習時間
         trigger: 学習のきっかけや理由
         ingenuity: 学習時の工夫

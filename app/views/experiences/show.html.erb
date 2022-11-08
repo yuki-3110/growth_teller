@@ -1,5 +1,13 @@
 <div class="h4 container" style=" margin-top: 200px;" >
   <div class="card card-body">
+
+    <% unless @experience.user == current_user %>
+    <p>
+      <a>投稿者：</a>
+      <%= link_to @experience.user.name, user_path(@experience.user_id) %>
+    </p>
+    <% end %>
+
     <p>
       <a>学習内容：</a>
       <%= @experience.title %>
@@ -14,10 +22,10 @@
     </div>
 
     <div class="mt-5">
-      <a>【勉強方法】</a>
+      <a>【自己啓発種類】</a>
       <%= @experience.study_method %>
     
-      <a>【学習時期】</a>
+      <a>【学習開始時期】</a>
       <%= @experience.learn_age %>
     
       <a>【総学習時間】</a>
@@ -26,17 +34,17 @@
 
     <div class="mt-5">
       <a>【学習のきっかけや理由】</a><br>
-      <%= @experience.trigger %>
+      <%= safe_join(@experience.trigger.split("\n"),tag(:br)) %>
     </div>
 
     <div class="mt-5">
       <a>【学習時の工夫】</a><br>
-      <%= @experience.ingenuity %>
+      <%= safe_join(@experience.ingenuity.split("\n"),tag(:br)) %>
     </div>
 
     <div class="mt-5">
       <a>【学習の結果や感想】</a><br>
-      <%= @experience.result %>
+      <%= safe_join(@experience.result.split("\n"),tag(:br)) %>
     </div>
 
     <br>
