@@ -49,15 +49,15 @@
   <% unless @experiences.present? %>
     <div class="mt-5">
       <%  if params[:q].present? %>
-        <p class= "h4" >検索条件に一致する経験談がありません。</p>
-        <p class= "h4" >条件を変えて検索するか、直近で投稿された<%= link_to "経験談", experiences_path %>を確認しましょう！</p>
+        <p>検索条件に一致する経験談がありません。</p>
+        <p>条件を変えて検索するか、直近で投稿された<%= link_to "経験談", experiences_path %>を確認しましょう！</p>
       <% else %>
       <% end %>
     </div>
   <% end %>
 
   <% @experiences.each do |experience| %>
-    <div class="h5 card mt-5">
+    <div class="card mt-5">
       <div class="card-body" >
         <p class="mt-2">学習内容：<%= link_to experience.title, experience %></p>
         <p>

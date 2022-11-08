@@ -45,7 +45,7 @@
       <div class="card-body">
         <% if @careers.present? %>
           <% @careers.each do |career| %>
-            <div class="h5 card mt-3">
+            <div class="card mt-3">
               <p class="mt-2">在籍期間：<%= career.start_day.strftime('%Y年 %m月') %> 〜 <%= career.end_day.strftime('%Y年 %m月') %></p>
               <p>業種：<%= career.industry %></p> 
               <p>職種：<%= career.occupation %></p>
@@ -64,7 +64,7 @@
             </div>
           <% end %>
         <% else %>
-          <p class="h3">経歴が投稿されていません</p>
+          <p>経歴が投稿されていません</p>
         <% end %>
       </div>
     </div>
@@ -82,7 +82,7 @@
       <div class="card-body">
         <% if @experiences.present? %>
           <% @experiences.each do |experience| %>
-            <div class="h5 card mt-5">
+            <div class=" card mt-5">
               <div class="card-body" >
                 <p class="mt-2">学習内容：<%= link_to experience.title, experience %></p>
                 <p>
@@ -107,7 +107,7 @@
             </div>
           <% end %>
         <% else %>
-          <p class="h3">経験談が投稿されていません</p>
+          <p>経験談が投稿されていません</p>
         <% end %>
       </div>
     </div>
@@ -126,7 +126,7 @@
         <div class="card-body">
           <% if @favorites.present? %>
             <% @favorites.each do |favorite| %>
-              <div class="h5 card mt-5">
+              <div class="card mt-5">
                 <div class="card-body" >
                   <p class="mt-2">学習内容：<%= link_to favorite.experience.title, favorite.experience %></p>
                   <p>
@@ -154,7 +154,7 @@
               </div>
             <% end %>
           <% else %>
-            <p class="h3">いいねしている投稿はありません</p>
+            <p>いいねしている投稿はありません</p>
           <% end %>
         </div>
       </div>
