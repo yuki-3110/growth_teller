@@ -1,11 +1,11 @@
-<div class="container text-center" style=" margin-top: 100px;">
+<div class="container text-center" style=" margin-top: 50px;">
   <% if user_signed_in? && @user == current_user %>
-    <h4>マイページ</h4>
+    <h6 class="mb-4">マイページ</h6>
   <% else %>
-    <h4><%= @user.name %>のページ</h4>
+    <h6 class="mb-4"><%= @user.name %>のページ</h6>
   <% end %>
 
-  <div class=" con">
+  <div class="con">
     <% if @user.image? %>
       <%= image_tag @user.image.url %>
       <%#= image_tag @user.image, size: '100x100' %>
@@ -17,7 +17,7 @@
   </div>
 
   <br>
-  <a class="h4">
+  <a>
     氏名：<%= @user.name %> / 年代：<%= @user_age %>代 
     <% if current_user == @user  %>
     <div class= "mb-3  btn btn-outline-secondary" style= "margin-left: 10px;  ">

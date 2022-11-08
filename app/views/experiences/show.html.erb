@@ -13,7 +13,7 @@
       <%= @experience.title %>
     </p>
 
-    <div class="mt-5">
+    <div class="mt-3">
       <a>【学習時の業種】</a>
       <%= @experience.industry %> /
     
@@ -21,7 +21,7 @@
       <%= @experience.occupation %>
     </div>
 
-    <div class="mt-5">
+    <div class="mt-3">
       <a>【自己啓発種類】</a>
       <%= @experience.study_method %>
     
@@ -32,17 +32,17 @@
       <%= @experience.learn_hour %>時間
     </div>
 
-    <div class="mt-5">
+    <div class="mt-3">
       <a>【学習のきっかけや理由】</a><br>
       <%= safe_join(@experience.trigger.split("\n"),tag(:br)) %>
     </div>
 
-    <div class="mt-5">
+    <div class="mt-3">
       <a>【学習時の工夫】</a><br>
       <%= safe_join(@experience.ingenuity.split("\n"),tag(:br)) %>
     </div>
 
-    <div class="mt-5">
+    <div class="mt-3">
       <a>【学習の結果や感想】</a><br>
       <%= safe_join(@experience.result.split("\n"),tag(:br)) %>
     </div>
