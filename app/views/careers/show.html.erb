@@ -29,8 +29,10 @@
   <br>
   <div class="field my-3"">
     <strong>Content</strong><br>
-    <%= @career.content %>
+    <%= safe_join(@career.content.split("\n"),tag(:br)) %>
   </div>
+
+  
 
   <%= link_to 'Back', user_path(current_user), class: "text-dark " %>
 </div>

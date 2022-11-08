@@ -59,8 +59,7 @@
   <% @experiences.each do |experience| %>
     <div class="h5 card mt-5">
       <div class="card-body" >
-        <p class="mt-2">投稿者：<%= link_to experience.user.name, user_path(experience.user_id) %></p>
-        <p class="mt-2">学習内容：<%= experience.title %></p>
+        <p class="mt-2">学習内容：<%= link_to experience.title, experience %></p>
         <p>
           学習時間：<%= experience.learn_hour %>時間
           / 目的：<%= experience.purposes.pluck(:name).join('、') %>
@@ -74,17 +73,19 @@
         </div>
         <%# unless experience.user_id == current_user.id %>
           <%# if current_user.favorites.where(id: experience.id, experience_id: experience.id).exists? %>
-        <% if current_user.favorites.where(experience_id: experience.id).exists? %>
-          <%= link_to '❤️', experience_favorite_path(id: experience.id, experience_id: experience.id), method: :delete, class: 'text-decoration-none' %><%= experience.favorites.count %>
-        <% else %>
-          <%= link_to '♡', experience_favorites_path(id: experience.id, experience_id: experience.id), method: :post, class: 'text-decoration-none' %><%= experience.favorites.count %>
-        <% end %>
+        
         <%# end %>
+        投稿者<%= link_to experience.user.name, user_path(experience.user_id), class: "mx-1" %>
 
-        <%= link_to '詳細', experience, class: "btn btn-outline-secondary"  %>
+        <% if current_user.favorites.where(experience_id: experience.id).exists? %>
+          <%= link_to '❤️', experience_favorite_path(id: experience.id, experience_id: experience.id), method: :delete, class: 'mx-2 text-decoration-none' %><%= experience.favorites.count %>
+        <% else %>
+          <%= link_to '♡', experience_favorites_path(id: experience.id, experience_id: experience.id), method: :post, class: 'mx-2 text-decoration-none' %><%= experience.favorites.count %>
+        <% end %>
+        <%#= link_to '詳細', experience, class: "btn btn-outline-secondary"  %>
         <% if experience.user == current_user %>
-          <%= link_to '編集', edit_experience_path(experience), class: "btn btn-outline-secondary"  %>
-          <%= link_to '削除', experience, method: :delete, data: { confirm: '本当に決していいですか？' }, class: "btn btn-outline-secondary"  %>
+          <%= link_to '編集', edit_experience_path(experience), class: "mx-1 btn btn-outline-secondary"  %>
+          <%= link_to '削除', experience, method: :delete, data: { confirm: '本当に決していいですか？' }, class: "mx-1 btn btn-outline-secondary"  %>
         <% end %>
         <%= experience.updated_at.strftime("%Y/%m/%d %H:%M") %>
       </div>
