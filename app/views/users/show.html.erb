@@ -138,7 +138,7 @@
 
                   投稿者<%= link_to favorite.experience.user.name, user_path(favorite.experience.user_id), class: "mx-1" %>
 
-                  <% if favorite.present? %>
+                  <% if current_user.favorites.present? %>
                     <%= link_to '❤️', experience_favorite_path(favorite.experience.id), method: :delete, class: 'mx-2 text-decoration-none' %><%= favorite.experience.favorites.count %>
                   <% else %>
                     <%= link_to '♡', experience_favorites_path(favorite.experience.id), method: :post, class: 'mx-2 text-decoration-none' %><%= favorite.experience.favorites.count %>
