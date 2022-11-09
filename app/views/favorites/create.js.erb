@@ -1,1 +1,3 @@
 $('#favorite_index_<%= @experience.id %>').html("<%= j(render partial: 'favorites/favorite', locals: { experience: @experience }) %>");
+
+$('#favorite_experience_<%= @experience.id %>').html("<%= j(render partial: 'favorites/experience', locals: { experience: @experience }) %>");

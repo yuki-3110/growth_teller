@@ -1,0 +1,9 @@
+<% if current_user.favorited_by?(@experience.id) %>
+  <%= link_to destroy_favorite_path(@experience), method: :delete, remote: true do  %>
+    <i class="fas fa-heart fa-lg" style="color: red;"></i><a class="favorite count" style="color: black; text-decoration: none;" ><%= @experience.favorites.count %></a>
+  <% end %>
+<% else %>
+  <%= link_to create_favorite_path(@experience), method: :post, remote: true do  %>
+    <i class="far fa-heart fa-lg" style="color: black;"></i><a class="favorite count" style="color: black; text-decoration: none;" ><%= @experience.favorites.count %></a>
+  <% end %>
+<% end %>
