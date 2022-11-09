@@ -66,22 +66,17 @@
         </p>
       </div>
       <div class="card-footer text-right" >
-        <%#= render partial: 'favorites/favorite', locals: { experience: experience } %>
-        <div id="favorite_index_<%#= experience.id %>" >
-          <%#= render "favorites/favorite" , experience: experience %>
-          <%#= render "favorites/favorite" , locals: {experience: experience}  %>
-        </div>
-        <%# unless experience.user_id == current_user.id %>
-          <%# if current_user.favorites.where(id: experience.id, experience_id: experience.id).exists? %>
-        
-        <%# end %>
-        投稿者<%= link_to experience.user.name, user_path(experience.user_id), class: "mx-1" %>
 
-        <% if current_user.favorites.where(experience_id: experience.id).exists? %>
-          <%= link_to '❤️', experience_favorite_path(id: experience.id, experience_id: experience.id), method: :delete, class: 'mx-2 text-decoration-none' %><%= experience.favorites.count %>
-        <% else %>
-          <%= link_to '♡', experience_favorites_path(id: experience.id, experience_id: experience.id), method: :post, class: 'mx-2 text-decoration-none' %><%= experience.favorites.count %>
-        <% end %>
+        <span id = "favorite_index_<%= experience.id %>">
+          <%= render partial: 'favorites/favorite', locals: { experience: experience } %>
+        </span>
+
+        投稿者<%= link_to experience.user.name, user_path(experience.user_id), class: "mx-1" %>
+        <%# if current_user.favorites.where(experience_id: experience.id).exists? %>
+          <%#= link_to '❤️', experience_favorite_path(id: experience.id, experience_id: experience.id), method: :delete, class: 'mx-2 text-decoration-none' %><%#= experience.favorites.count %>
+        <%# else %>
+          <%#= link_to '♡', experience_favorites_path(id: experience.id, experience_id: experience.id), method: :post, class: 'mx-2 text-decoration-none' %><%#= experience.favorites.count %>
+        <%# end %>
         <%#= link_to '詳細', experience, class: "btn btn-outline-secondary"  %>
         <% if experience.user == current_user %>
           <%= link_to '編集', edit_experience_path(experience), class: "mx-1 btn btn-outline-secondary"  %>

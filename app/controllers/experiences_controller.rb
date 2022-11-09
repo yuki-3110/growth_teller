@@ -20,6 +20,7 @@ class ExperiencesController < ApplicationController
   # GET /experiences/1 or /experiences/1.json
   def show
     @favorite = current_user.favorites.find_by(experience_id: @experience.id)
+    # @favorite = Favorite.find_by(experience_id: @experience.id)
   end
 
   # GET /experiences/new

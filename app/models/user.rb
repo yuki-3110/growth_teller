@@ -28,8 +28,8 @@ class User < ApplicationRecord
   #   end
   end
 
-  # def favorited_by?(experience_id)
-  #   favorites.where(experience_id: experience_id).exists?
-  # end
+  def favorited_by?(experience_id)
+    favorites.where(experience_id: experience_id).exists?
+  end
   
 end

@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   resources :purposes
-  resources :experiences do
-#     post 'like/:id' => 'likes#create', as: 'create_like'
-#  delete 'like/:id' => 'likes#destroy', as: 'destroy_like'
-    resources :favorites, only: %i(create destroy)
-  end
+  resources :experiences 
+  post 'favorite/:id' => 'favorites#create', as: 'create_favorite'
+  delete 'favorite/:id' => 'favorites#destroy', as: 'destroy_favorite'
+    # resources :favorites, only: %i(create destroy)
+
   # get 'search', to: 'experiences#search'
     # collection do
     #   post :index_user
