@@ -1,3 +1,7 @@
-$('#favorite_index_<%= @experience.id %>').html("<%= j(render partial: 'favorites/favorite', locals: { experience: @experience }) %>");
+$('#favorite_experience_index_<%= @experience.id %>').html("<%= j(render partial: 'favorites/favorite', locals: { experience: @experience }) %>");
 
-$('#favorite_experience_<%= @experience.id %>').html("<%= j(render partial: 'favorites/experience', locals: { experience: @experience }) %>");
+$('#favorite_experience_show_<%= @experience.id %>').html("<%= j(render partial: 'favorites/experience_show', locals: { experience: @experience }) %>"); 
+
+$('#favorite_user_show_experience_<%= @experience.id %>').html("<%= j(render partial: 'favorites/user_show_experience', locals: { experience: @experience }) %>"); 
+
+$('#favorite_user_show_favorite_<%= @experience.id %>').html("<%= j(render partial: 'favorites/user_show_favorite', locals: { experience: @experience }) %>"); 
