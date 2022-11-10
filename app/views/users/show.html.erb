@@ -92,8 +92,8 @@
               </div>
               <div class="card-footer text-right" >
 
-                <span id = "favorite_user_show_experience_<%= experience.id %>">
-                  <%= render partial: 'favorites/user_show_experience', locals: { experience: experience } %>
+                <span id = "favorite_experience_index_<%= experience.id %>">
+                  <%= render partial: 'favorites/favorite', locals: { experience: experience } %>
                 </span>
 
               
@@ -142,8 +142,8 @@
                 </div>
                 <div class="card-footer text-right" >
 
-                <span id = "favorite_user_show_favorite_<%= favorite.experience.id %>">
-                  <%= render partial: 'favorites/user_show_favorite', locals: { experience: favorite.experience } %>
+                <span id = "favorite_experience_index_<%= favorite.experience.id %>">
+                  <%= render partial: 'favorites/favorite', locals: { experience: favorite.experience } %>
                 </span>
 
                   投稿者<%= link_to favorite.experience.user.name, user_path(favorite.experience.user_id), class: "mx-1" %>
