@@ -32,11 +32,23 @@
 
       <div class="field mt-4">
         <%= form.label :目的（複数選択可） %><br>
-        <% Purpose.all.each do |purpose| %>
-          <%= form.check_box :purpose_ids, { multiple: true, checked: purpose[:checked], disabled: purpose[:disabled], include_hidden: false }, purpose[:id] %>
-          <%= form.label :purpose_ids, purpose.name, value: purpose[:id] %>
+        <%= form.collection_check_boxes(:purpose_ids, Purpose.all, :id ,:name) do |b| %>
+          <%= b.check_box  class: "btn-check" %>
+          <%#= b.label(class: "btn btn-sm btn-outline-secondary", 'date-toggle': "button", 'aria-pressed': "false", 'autocomplete': "on") { b.text } %>
+          <%#= b.label(class: "btn btn-sm btn-outline-secondary", 'data-toggle': "button" ) { b.text } %>
+          <%# b.valueでeach doのPurposeのidを取り出せる activeが付いていて、aria-pressedがtrueの場合は、ボタンが押された状態になる %> 
+          <% active = "active" if experience.purposes.find_by(id: b.value).present? %>
+          <%# aria-pressedがtrue or falseを代入するための文章 %>
+          <% aria_true = experience.purposes.find_by(id: b.value).present? %>
+          <%= b.label(class: "btn btn-sm btn-outline-secondary #{active}",'data-toggle': "button", 'aria-pressed': aria_true ) { b.text } %>
         <% end %>
+        <%# Purpose.all.each do |purpose| %>
+          <%#= form.check_box :purpose_ids, { multiple: true, checked: experience.purposes.find_by(id: purpose.id).present?, include_hidden: false }, purpose[:id] %>
+          <%#= form.check_box :purpose_ids, { multiple: true, checked: purpose[:checked], disabled: purpose[:disabled], include_hidden: false }, purpose[:id] %>
+          <%#= form.label :purpose_ids, purpose.name, value: purpose[:id] %>
+        <%# end %>
       </div>
+
 
       <div class="field mt-4">
         <%= form.label :study_method %>
