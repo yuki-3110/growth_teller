@@ -1,0 +1,15 @@
+<%# if current_user.favorites.present? %>
+  <%#= link_to '❤️', experience_favorite_path(favorite.experience.id), method: :delete, class: 'mx-2 text-decoration-none' %><%#= favorite.experience.favorites.count %>
+<%# else %>
+  <%#= link_to '♡', experience_favorites_path(favorite.experience.id), method: :post, class: 'mx-2 text-decoration-none' %><%#= favorite.experience.favorites.count %>
+<%# end %>
+
+<% if current_user.favorites.present? %>
+  <%= link_to destroy_favorite_path(experience.id), method: :delete, remote: true do  %>
+    <i class="fas fa-heart fa-lg" style="color: red;"></i><a class="favorite count" style="color: black; text-decoration: none;" ><%= experience.favorites.count %></a>
+  <% end %>
+<% else %>
+  <%= link_to create_favorite_path(experience.id), method: :post, remote: true do  %>
+    <i class="far fa-heart fa-lg" style="color: black;"></i><a class="favorite count" style="color: black; text-decoration: none;" ><%= experience.favorites.count %></a>
+  <% end %>
+<% end %>

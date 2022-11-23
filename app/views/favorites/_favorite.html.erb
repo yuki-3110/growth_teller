@@ -1,12 +1,12 @@
+<%# if user_signed_in? %> 
 <% if current_user.favorited_by?(experience.id) %>
-  <%= link_to experience_favorite_path(experience), class: 'btn', method: :delete, remote: true do  %>
-    <i class="fas fa-heart" style="color: red;"></i><%= experience.favorites.count %>
+  <%= link_to destroy_favorite_path(experience), method: :delete, remote: true do  %>
+    <i class="fas fa-heart fa-lg" style="color: red;"></i><a class="favorite count" style="color: black; text-decoration: none;" ><%= experience.favorites.count %></a>
   <% end %>
 <% else %>
-  <%= link_to experience_favorites_path(experience), class: 'btn', method: :post, remote: true do  %>
-    <i class="far fa-heart" style="color: black;"></i><%= experience.favorites.count %>
+  <%= link_to create_favorite_path(experience), method: :post, remote: true do  %>
+    <i class="far fa-heart fa-lg" style="color: black;"></i><a class="favorite count" style="color: black; text-decoration: none;" ><%= experience.favorites.count %></a>
   <% end %>
 <% end %>
-
-
+<%# end %>
 
